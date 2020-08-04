@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = 'needToReverse'>
+        <!-- before reverse the DOM -->
+        <div>A</div>
+        <span>B</span>        
+        <p>C</p>        
+    </div>
+
+    <div id = 'result'>RESULT</div>          
+    
+
+    <script>
+        const needToReverse = document.getElementById('needToReverse').children;
+
+        console.log(needToReverse);
+
+        // reverse start
+
+        const stack = [];
+        for(let index = 0; index<needToReverse.length; index++) {
+            const dupNode = needToReverse[index].cloneNode(true);
+            console.log(dupNode);
+            stack.push(dupNode);
+        }
+        const resultArray = [];
+        for(let index = 0;index < needToReverse.length; index++) {
+            resultArray[index] = stack.pop();
+        }        
+        
+        // reverse end
+        console.log(resultArray); // 从控制台看到我们已经成功反转
+
+        const resultDom = document.getElementById('result');
+        for(let index = 0; index < resultArray.length ;index++ ) {
+            resultDom.appendChild(resultArray[index]);
+        }
+
+        console.log(resultDom);
+
+        /*
+         我们发现:
+         在使用 DOM 函数 `appendChild`时，原来的父元素中的各个元素都不复存在。
+         原因可以参考 mozilla.org:
+
+         Node.appendChild() 方法将一个节点附加到指定父节点的子节点列表的末尾处。
+         如果将被插入的节点已经存在于当前文档的文档树中，那么 appendChild() 
+         只会将它从原先的位置移动到新的位置（不需要事先移除要移动的节点）
+
+         这意味着，一个节点不可能同时出现在文档的不同位置。
+         所以，如果某个节点已经拥有父节点，在被传递给此方法后，它首先会被移除，再被插入到新的位置。
+         若要保留已在文档中的节点，可以先使用  Node.cloneNode() 方法来为它创建一个副本
+
+         如果你需要保留这个子节点在原先位置的显示
+         则你需要先用 Node.cloneNode 方法复制出一个节点的副本,然后在插入到新位置
+         所以在这里我们考虑复制一份再拿出来          
+         */
+
+    </script>
+</body>
+</html>
