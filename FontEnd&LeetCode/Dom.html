@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <div>a</div>
+        <div>b</div>
+        <div>c</div>
+        <div>d</div>
+        <div>e</div>
+    </div>
+    <div id = 'test1'>
+        <div>a</div>
+        <div>b</div>
+        <div>c</div>
+        <span>aaaa</span>
+    </div>
+
+    <div class = 'test2'>
+        <div>test a</div>
+        <span>test b</span>
+        <span>test c</span>
+        <p>test d</p>
+    </div>
+
+    <div class = 'test3'>
+        <div>111</div>
+        <div>222</div>
+        <div>333</div>
+    </div>
+    <script>        
+        const resultArray = document.querySelector('.test3').children;
+        console.log(resultArray);
+
+        const stack = [];
+        const newDomNode = [];
+        for( let index = 0; index < resultArray.length; index++) {
+            stack.push(resultArray[index]);
+        }
+        for( let index = 0; index < resultArray.length; index++) {
+            let result = stack.pop(resultArray[index]);
+            newDomNode[index] = result;
+            // console.log(result);
+        }
+        console.log(newDomNode);
+        
+
+        const childNodes = document.getElementsByClassName('test2')[0].childNodes;
+        const children = document.getElementsByClassName('test2')[0].children;
+        const childrenBySelect = document.querySelector('.test3').children;
+
+        const stackSelect = [];
+        for (let index = 0; index < childrenBySelect.length; index++) {
+            stack.push(childrenBySelect[index]);
+        }
+        for (let index = 0; index < childrenBySelect.length; index++) {
+            let resultByselect = stack.pop();
+            console.log(resultByselect);
+        }
+
+        console.log(childrenBySelect);
+        console.log(childNodes);
+        console.log(children);
+
+
+        const b = document.getElementById("test1").childNodes;
+
+    </script>
+</body>
+</html>

@@ -15,12 +15,12 @@
     你不需要考虑数组中超出新长度后面的元素。
  */
 
- 
-function removeRepeat (preArray) {
+
+function removeRepeat(preArray) {
     newArray = [];
     let indexOfNew = 0;
-    for( let indexOfPre = 0; indexOfPre<preArray.length; indexOfPre++ ) {
-        if( !newArray.includes(preArray[indexOfPre]) ){
+    for (let indexOfPre = 0; indexOfPre < preArray.length; indexOfPre++) {
+        if (!newArray.includes(preArray[indexOfPre])) {
             newArray[indexOfNew] = preArray[indexOfPre]
             indexOfNew++;
         }
@@ -30,5 +30,5 @@ function removeRepeat (preArray) {
     console.log(newArray);
 }
 
-const testArray = [0,1,1,1,1,2];
+const testArray = [0, 1, 1, 1, 1, 2];
 removeRepeat(testArray);
