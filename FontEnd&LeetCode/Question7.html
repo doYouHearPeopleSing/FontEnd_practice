@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var x = 3;
+
+        var foo = {
+            x: 2,
+            baz: {
+                x: 1,
+                bar: function() {
+                    return this.x;
+                }
+            }
+        }
+        var go = foo.baz.bar;
+        // alert(go());
+        // alert(foo.baz.bar());
+
+        const test = [] + [] + 'foo'.split('');
+        // console.log(test);
+
+        function Foo() {}
+        console.log(Foo.prototype);
+        // console.log(Foo.prototype.contructor);
+        console.log(Foo.__proto__);
+        console.log(Foo.prototype.__proto__);
+
+    </script>
+</body>
+</html>
