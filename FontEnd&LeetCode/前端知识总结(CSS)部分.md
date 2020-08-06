@@ -53,3 +53,21 @@ HTML 标签原本被设计为用于定义文档内容。通过使用 `<h1>、<p>
 
 因此，内联样式（在 HTML 元素内部）拥有最高的优先权，这意味着它将优先于以下的样式声明：`<head>` 标签中的样式声明，外部样式表中的样式声明，或者浏览器中的样式声明（缺省值）。
 
+# CSS 语法
+
+CSS 规则由两个主要的部分构成：1. 选择器 2.声明
+
+`selector {declaration1; declaration2; ... declarationN }`
+选择器用来选择需要改变样式的 HTML 元素
+
+每条声明由一个属性和一个值组成
+
+属性（property）是我们希望设置的样式属性（style attribute）。每个属性有一个值。属性和值被冒号分开
+
+selector {property: value}
+下面这行代码的作用是将 h1 元素内的文字颜色定义为红色，同时将字体大小设置为 14 像素。
+
+在这个例子中，h1 是选择器，color 和 font-size 是属性，red 和 14px 是值。
+
+`h1 {color:red; font-size:14px;}`
+
