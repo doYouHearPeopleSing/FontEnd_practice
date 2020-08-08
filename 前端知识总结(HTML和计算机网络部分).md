@@ -279,14 +279,17 @@ POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web �
 以下简要介绍一下WebSocket的原理及运行机制。WebSocket 是 HTML5 下一种新的协议。它实现了浏览器与服务器全双工通信，能更好的节省服务器资源和带宽并达到实时通讯的目的。它与HTTP一样通过已建立的TCP连接来传输数据，但是它和HTTP最大不同是：WebSocket是一种双向通信协议。在建立连接后，WebSocket服务器端和客户端都能主动向对方发送或接收数据，就像Socket一样；WebSocket需要像TCP一样，先建立连接，连接成功后才能相互通信。
 
 传统HTTP客户端与服务器请求响应模式如下图所示：
-<img src="https://pic2.zhimg.com/50/v2-c99efde0caccb49814ea83c126b0e18a_hd.jpg?source=1940ef5c" data-rawwidth="355" data-rawheight="341" class="content_image" width="355"/>WebSocket模式客户端与
+
+<img src="https://pic2.zhimg.com/50/v2-c99efde0caccb49814ea83c126b0e18a_hd.jpg?source=1940ef5c" data-rawwidth="355" data-rawheight="341" class="content_image" width="355"/>
 
 
-服务器请求响应模式如下图：
-<img src="https://pic2.zhimg.com/50/v2-e4128e588c6c21216319351ee7eb0bac_hd.jpg?source=1940ef5c" data-rawwidth="340" data-rawheight="278" class="content_image" width="340"/>上图对比可以看出，相
+WebSocket模式客户端与服务器请求响应模式如下图：
 
 
-对于传统HTTP每次请求-应答都需要客户端与服务端建立连接的模式，WebSocket是类似Socket的TCP长连接通讯模式。一旦WebSocket连接建立后，后续数据都以帧序列的形式传输。在客户端断开WebSocket连接或Server端中断连接前，不需要客户端和服务端重新发起连接请求。在海量并发及客户端与服务器交互负载流量大的情况下，极大的节省了网络带宽资源的消耗，有明显的性能优势，且客户端发送和接受消息是在同一个持久连接上发起，实时性优势明显。
+<img src="https://pic2.zhimg.com/50/v2-e4128e588c6c21216319351ee7eb0bac_hd.jpg?source=1940ef5c" data-rawwidth="340" data-rawheight="278" class="content_image" width="340"/>
+
+
+上图对比可以看出，相对于传统HTTP每次请求-应答都需要客户端与服务端建立连接的模式，WebSocket是类似Socket的TCP长连接通讯模式。一旦WebSocket连接建立后，后续数据都以帧序列的形式传输。在客户端断开WebSocket连接或Server端中断连接前，不需要客户端和服务端重新发起连接请求。在海量并发及客户端与服务器交互负载流量大的情况下，极大的节省了网络带宽资源的消耗，有明显的性能优势，且客户端发送和接受消息是在同一个持久连接上发起，实时性优势明显。
 
 相比HTTP长连接，WebSocket有以下特点：是**真正的全双工方式**，建立连接后客户端与服务器端是完全平等的，可以互相主动请求。而HTTP长连接基于HTTP，是传统的客户端对服务器发起请求的模式。HTTP长连接中，每次数据交换除了真正的数据部分外，服务器和客户端还要大量交换HTTP header，信息交换效率很低。Websocket协议通过第一个request建立了TCP连接之后，之后交换的数据都不需要发送 HTTP header就能交换数据，这显然和原有的HTTP协议有区别所以它需要对服务器和客户端都进行升级才能实现（主流浏览器都已支持HTML5）。此外还有 multiplexing、不同的URL可以复用同一个WebSocket连接等功能。这些都是HTTP长连接不能做到的。下面再通过客户端和服务端交互的报文对比WebSocket通讯与传统HTTP的不同点：在客户端，new WebSocket实例化一个新的WebSocket客户端对象，请求类似 ws://yourdomain:port/path 的服务端WebSocket URL，客户端WebSocket对象会自动解析并识别为WebSocket请求，并连接服务端端口，执行双方握手过程，客户端发送数据格式类似：
 ```
