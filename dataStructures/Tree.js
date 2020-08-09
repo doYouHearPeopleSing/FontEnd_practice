@@ -150,6 +150,6 @@ tree.insertNodeRight(nodeA.right,6,'F');
         loop(node);
         return outputJudge;
     }
+    
     bfsJudge(nodeA);
     console.log(isComplete);
-    // console.log(nodeA.right.right.right);
