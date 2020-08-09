@@ -35,6 +35,7 @@ class BinaryTree {
     preListRec = []; //定义保存先序遍历结果的数组
     preOrderRec(node) {
         if (node) { //判断二叉树是否为空
+            console.log(node.value);
             this.preListRec.push(node.value); //将结点的值存入数组中
             this.preOrderRec(node.left); //递归遍历左子树
             this.preOrderRec(node.right); //递归遍历右子树
@@ -71,14 +72,15 @@ tree.insertNodeLeft(nodeA,2,'B');
 tree.insertNodeRight(nodeA,3,'C');
 tree.insertNodeRight(nodeA.left,5,'E');
 tree.insertNodeLeft(nodeA.left,4,'D');
-tree.insertNodeRight(nodeA.right,6,'F');
+tree.insertNodeLeft(nodeA.right,6,'F');
+tree.insertNodeRight(nodeA.right,7,'G');
 
 // tree.insertNodeLeft(nodeA.left,4,'D');
 // tree.insertNodeRight(nodeA.left,5,'E');
 // tree.insertNodeRight(nodeA.right,7,'G');
 
 // console.log(`===========`);
-// tree.preOrderRec(nodeA);
+tree.preOrderRec(nodeA);
 // console.log(tree.preListRec);
 // tree.inOrderRec(nodeA);
 // console.log(tree.inListRec);
@@ -89,26 +91,28 @@ tree.insertNodeRight(nodeA.right,6,'F');
 // console.log(tree.bfsByRcs(tree));
 
 
-    // const queue = [];
-    // const output = [];
-    // function bfs(node){
-    //     function loop(node) {
-    //         if(node) {
-    //             output.push(node.value);
-    //             if(node.left) {
-    //                 queue.unshift(node.left);
-    //             }
-    //             if(node.right) {
-    //                 queue.unshift(node.right);
-    //             }
-    //             loop(queue.pop());
-    //         }
-    //     }
-    //     loop(node);
-    //     return output;
-    // }
+    const queue = [];
+    const output = [];
+    function bfs(node){
+        function loop(node) {
+            if(node) {
+                output.push(node.value);
+                if(node.left) {
+                    queue.unshift(node.left);
+                }
+                if(node.right) {
+                    queue.unshift(node.right);
+                }
+                loop(queue.pop());
+            }
+        }
+        loop(node);
+        return output;
+    }
     // bfs(nodeA);
     // console.log(`OUTPUT IS:${output}`); 
+
+
 
     const queueJudge = [];
     const outputJudge = [];
@@ -150,6 +154,6 @@ tree.insertNodeRight(nodeA.right,6,'F');
         loop(node);
         return outputJudge;
     }
-    
-    bfsJudge(nodeA);
-    console.log(isComplete);
+
+    // bfsJudge(nodeA);
+    // console.log(isComplete);
