@@ -31,12 +31,29 @@
 而不是在函数被执行的地方
 */
 
-function f1(){
-    var n=999;
-    function f2(){
-        console.log(n);
-    }    
-    return f2;
+// function f1(){
+//     var n=999;
+//     function f2(){
+//         console.log(n);
+//     }    
+//     return f2;
+// }
+// var result=f1();
+// result(); // 999
+
+function Person(){
+    var name = 'cxk';
+    this.getName = function(){
+        return name;
+    }
+    this.setName = function(value){
+        name = value;
+    }
 }
-var result=f1();
-result(); // 999
+
+const cxk = new Person()
+
+console.log(cxk.getName()) //cxk
+cxk.setName('jntm')
+console.log(cxk.getName()) //jntm
+console.log(name) //name is not defined
