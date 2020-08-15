@@ -71,3 +71,85 @@ selector {property: value}
 
 `h1 {color:red; font-size:14px;}`
 
+# BFC
+块格式化上下文（Block Formatting Context，BFC） 是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。
+
+下列方式会创建块格式化上下文：
+
+根元素（`<html>`）
+
+
+浮动元素（元素的 float 不是 none）
+
+
+绝对定位元素（元素的 position 为 absolute 或 fixed）
+
+
+行内块元素（元素的 display 为 inline-block）
+
+
+表格单元格（元素的 display 为 table-cell，HTML 表格单元格默认为该值）
+
+
+表格标题（元素的 display 为 table-caption，HTML 表格标题默认为该值）
+
+
+匿名表格单元格元素（元素的 display 为 table、table-row、 table-row-group、table-header-group、table-footer-group（分别是HTML table、row、tbody、thead、tfoot 的默认属性）或 inline-table）
+
+
+overflow 值不为 visible 的块元素
+
+
+display 值为 flow-root 的元素
+
+
+contain 值为 layout、content 或 paint 的元素
+
+
+弹性元素（display 为 flex 或 inline-flex 元素的直接子元素）
+
+
+网格元素（display 为 grid 或 inline-grid 元素的直接子元素）
+
+
+多列容器（元素的 column-count 或 column-width 不为 auto，包括 column-count 为 1）
+
+
+column-span 为 all 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（标准变更，Chrome bug）
+
+
+块格式化上下文包含创建它的元素内部的所有内容.
+
+块格式化上下文对浮动定位（参见 float）与清除浮动（参见 clear）都很重要。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其它BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（Margin collapsing）也只会发生在属于同一BFC的块级元素之间。
+
+BFC 主要的作用是：
+
+清除浮动
+防止同一 BFC 容器中的相邻元素间的外边距重叠问题
+
+# 选择器及其优先级
+
+浏览器通过优先级来判断哪些属性值与一个元素最为相关，从而在该元素上应用这些属性值。优先级是基于不同种类选择器组成的匹配规则。
+
+## 优先级是如何计算的？
+
+下面列表中，选择器类型的优先级是递增的：
+内联 > ID选择器 > 类选择器 > 标签选择器。
+1. 内联
+2. ID 选择器（例如，#example）
+3. 类选择器 (例如，.example)，属性选择器（例如，[type="radio"]）和伪类（例如，:hover）
+4. 标签选择器（例如，h1）和伪元素（例如，::before）
+
+
+准确地说：
+
+
+优先级是由 A、B、C、D 的值来决定的，其中它们的值计算规则如下：
+
+如果存在内联样式，那么 A = 1, 否则 A = 0;
+B 的值等于 `ID选择器` 出现的次数;
+C 的值等于 `类选择器` 和 `属性选择器` 和 `伪类` 出现的总次数;
+D 的值等于 `标签选择器` 和 `伪元素` 出现的总次数 。
+
+比较规则是: 从左往右依次进行比较 ，较大者胜出，如果相等，则继续往右移动一位进行比较 。如果4位全部相等，则后面的会覆盖前面的
+
