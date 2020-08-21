@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>        
+    
+    .classB { color:red;}
+    .classC { color:yellow;}
+    .classA { color:blue;}
+    #ID {
+        color:yellowgreen;
+    }
+    </style>
+</head>
+<body>
+<p id = 'ID' class="  classA classB">hello</p>
+<p class="  classC classB">hello</p>
+<script>
+    var test = (function(i) {
+        return function() {
+             console.log(i *= 3);
+        }
+    })(2);
+
+    // console.log(typeof test(8));
+    test();
+</script>
+</body>
+</html>

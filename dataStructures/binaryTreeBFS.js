@@ -36,12 +36,12 @@ const tree = {
 }
 const queue = [];
 const output = [];
-
+// 广度优先进行层级遍历
 function bfsByRcs(tree) {
     const visitLoop = (node) => {
       if (node) {
-        console.log(node.data);
-        console.log(`The queue is:${queue}`);
+        console.log(`node.data is :${node.data}`);
+
         output.push(node.data);
         if (node.left) {
           queue.unshift(node.left);
@@ -59,4 +59,3 @@ function bfsByRcs(tree) {
   // 递归法BFS:  [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
 
   console.log(`=======`);
-  console.log(queue);
