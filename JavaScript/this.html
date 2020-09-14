@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+var circle = {
+    radius: 10,
+    name:'DongShufeng',
+    outerDiameter() {
+        const self = this;
+        var innerDiameter = () => {
+            console.log(2 * this.radius);
+            console.log(this);
+            console.log(self);
+            console.log(self === this);
+        };
+        innerDiameter();
+    }
+};
+
+circle.outerDiameter(); 
+
+    </script>
+</body>
+</html>

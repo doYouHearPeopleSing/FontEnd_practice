@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fruit() {};
+
+        fruit.prototype = {
+            color:`red`,
+            say:function() {
+                console.log(`My color is:${this.color}`);
+            }
+        }
+
+        const apple = new fruit;
+        apple.say();
+        
+        banban = {
+            color:'yellow'
+        }
+        // call 和 apply 的使用
+        apple.say.call(banban);
+        apple.say.apply(banban);
+
+        const numbers = [1,2,3,4,5,6];
+        const maxOfNumbers = Math.max.apply(this,numbers);
+        console.log(maxOfNumbers);
+
+
+        //  对象原型和原型链
+
+        // <img src = 'https://img2018.cnblogs.com/blog/1090617/202001/1090617-20200115195412174-1235848744.jpg'>;
+
+        function Person(){};
+        const person = new Person();
+
+        console.log(Person.prototype);
+        console.log(person.__proto__);
+        console.log(Person.prototype === person.__proto__);
+
+        console.log(Person.prototype.constructor);
+        
+
+        console.log(Person.prototype.__proto__);
+        console.log(Object.prototype);
+        console.log(Object.prototype.constructor);
+        console.log(Object.prototype === Person.prototype.__proto__);
+
+        console.log(Object.prototype.__proto__);
+        console.log(Object.prototype.__proto__ === null);
+        
+    </script>
+</body>
+</html>
+

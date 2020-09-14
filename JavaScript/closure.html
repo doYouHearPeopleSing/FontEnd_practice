@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function add() {
+            var a = 1;
+            return function() {
+                a++;
+                return a++;
+            }
+        }
+        var result = add();
+        
+        console.log(result());
+        console.log(result());
+
+        var b = 1;
+        console.log(`=======`);
+        console.log(++b);
+        console.log(b++);
+        console.log(b);
+    </script>
+</body>
+</html>

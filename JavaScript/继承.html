@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       // 1.原型链继承； 2.借用构造函数继承； 3.组合继承
+
+       // 原型链继承
+       function ParentClass (age) {
+            this.name = 'kevin';
+            this.age = age;
+        }
+     
+        function ChildClass () {
+
+        }
+
+        ChildClass.prototype = new ParentClass();
+
+        var childD = new ChildClass(35);
+
+        console.log(childD.name); // kevin
+
+        console.log(childD.age); 
+
+        console.log(childD.constructor.name);
+       // 原型链继承无法传递参数
+
+       // 原型链继承的缺点 引用类型的属性被所有实例共享
+
+       // 多个实例对引用类型的操作会被篡改。
+       function Parent () {
+            this.names = ['kevin', 'daisy'];
+        }
+
+        function Child () {
+
+        }
+
+        Child.prototype = new Parent();
+
+        var child1 = new Child();
+
+        child1.names.push('yayu');
+
+        console.log(child1.names); // ["kevin", "daisy", "yayu"]
+
+        var child2 = new Child();
+
+        console.log(child2.names); // ["kevin", "daisy", "yayu"]
+
+
+
+        // 2.构造函数继承: 借用构造函数 可以避免引用类型的属性被所有实例共享，可以在子类中向父类传递参数
+
+        function Car (names) {
+            this.names = names;
+        }
+        function Benz (names) {
+            Car.call(this,names);
+            // 核心代码是SuperType.call(this)
+            // 创建子类实例时调用SuperType构造函数
+            // 于是SubType的每个实例都会将SuperType中的属性复制一份
+        }
+
+        // 只能继承父类的实例属性和方法，不能继承原型属性/方法
+        // 无法实现复用，每个子类都有父类实例函数的副本，影响性能
+
+        var ae = new Benz(['d','s','f']);
+        // ae.names.push('F');
+        console.log(ae.names);
+        console.log(ae.constructor.name);
+
+
+        // 3.组合继承
+
+        function ParentCombine (name) {
+            this.name = name;
+            this.colors = ['red','green','yellow'];
+        }
+        
+        function ChildCombine(name,age) {
+            ParentCombine.call(this,name);
+            this.age = age;
+        }
+
+        ChildCombine.prototype = new ParentCombine();
+        ChildCombine.prototype.constructor = ChildCombine; 
+        // 重写SubType.prototype的constructor属性，指向自己的构造函数SubType
+
+        var ChildCombine1 = new ChildCombine('Dongshufeng',23);
+        ChildCombine1.colors.push('black');
+
+        var ChildCombine2 = new ChildCombine('Zhangzeheng',55);
+
+        console.log(`************`);
+        console.log(ChildCombine1.constructor.name);
+        console.log(ChildCombine1.colors);
+        console.log(ChildCombine1.name);
+        console.log(ChildCombine1.age);
+
+        console.log(`=======`);
+        console.log(ChildCombine2.colors);
+        console.log(ChildCombine2.name);
+        console.log(ChildCombine2.age);
+
+
+        console.log('----------------');
+
+        function object (obj) {
+            function F(){}
+            F.prototype = obj;
+            return new F();
+        }
+
+        var person = {
+            name: "Nicholas",
+            friends: ["Shelby", "Court", "Van"],
+            sayHi() {
+                console.log('Hi!');
+            }
+        };
+
+        var anotherPerson = object(person);
+        anotherPerson.name = "Greg";
+        anotherPerson.friends = ['1','2','3'];
+        console.log(`+++`);
+        anotherPerson.sayHi();
+        console.log(anotherPerson.name);
+        console.log(anotherPerson.friends);
+        console.log(`+++`);
+
+        var yetAnotherPerson = object(person);
+        yetAnotherPerson.name = "Linda";
+        // yetAnotherPerson.friends.push("Barbie");
+
+        console.log(person);   //"Shelby,Court,Van,Rob,Barbie"
+
+        // ES5的继承实质上是先创建子类的实例对象，然后再将父类的方法添加到this上（Parent.call(this)）.
+        
+        // ES6的继承有所不同，实质上是先创建父类的实例对象this，然后再用子类的构造函数修改this。因为子类没有自己的this对象，所以必须先调用父类的super()方法，否则新建实例报错。
+
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = 'div'>
+        <span>1</span>
+        <div>
+            <div>                
+                <div>aa</div>
+                <div>
+                    <p>a</p>
+                    <p>b</p>
+                    <p>c</p>
+                </div>
+                <span>cc</span>
+            </div>
+            <span>2</span>
+        </div>
+        <div>3</div>
+    </div>
+    <script>
+        
+        function resver(resverDom) {
+            
+            const children = resverDom.children;
+            const stack = [];
+
+            for(let i = 0;i<children.length;i++){
+                let tempNode = children[i]
+                if(tempNode.children.length !== 0) {
+                    resver(tempNode);
+                }
+                stack.push(children[i]); 
+            }
+
+            for(let i = 0;i<children.length;i++) {
+                resverDom.appendChild(stack.pop());
+            }
+
+        }
+        
+        resver(document.getElementById('div'));
+
+    </script>
+</body>
+</html>

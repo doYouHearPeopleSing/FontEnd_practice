@@ -1,47 +1,13 @@
+// 基本类型： string number boolean undefined null 
 var bool = true;
 var number = 2020;
-var arrayA = [1,2,3];
-var arrayB = new Array();
 var valueNull = null;
 var valueUndefined = undefined;
 
+var arrayB = new Array();
 var date = new Date();
-
-function type (target) {
-    console.log(`---START---`);
-    console.log(target);
-    console.log(`the type of it is:`);
-    console.log(typeof target);
-    console.log(`---END---`)
-}
-
-function instanceType (target,type) {
-    console.log(`the type of${target} is OF ${type} is: ${target instanceof type}`);
-}
-
-// type(bool);
-// type(number)
-// type(arrayA);
-// type(arrayB);
-// type(valueNull);
-// type(valueUndefined);
-function constructorType(target) {    
-    console.log(target.constructor.name);
-}
-// instance(arrayB,Array);
-// instance(arrayA,Array);
-// instance(date,Date);
-// instance(arrayB,Date);
-
-// console.log(date.constructor === Date);
-
-// constructorType(date,Date);
-// constructorType(arrayA,Array);
-
-function toStringType(target) {
-    const result = Object.prototype.toString.call(target);
-    console.log(result);
-}
+var Num = new Number();
+var Str = new String();
 
 class People {
     constructor(name) {
@@ -72,8 +38,72 @@ function D(){};
 C.prototype = new D(); //C继承自D
 var cObj = new C();
 
-constructorType(cObj);
-// constructorType(Dong);
-// toStringType(Dong);
+
+function ParentCombine (name) {
+    this.name = name;
+    this.colors = ['red','green','yellow'];
+}
+
+function ChildCombine(name,age) {
+    ParentCombine.call(this,name);
+    this.age = age;
+}
+
+ChildCombine.prototype = new ParentCombine();
+ChildCombine.prototype.constructor = ChildCombine;
+
+var Parent = new ParentCombine('Touniem',55);
+var Child = new ChildCombine('Zhangzeheng',55);
+
+// typeof 只能检测基本类型，同时 null 是一个特殊值，不可以使用 typeof
+function type (target) {
+    if(target === null) {
+        return `null`;
+    }
+    switch(typeof target) {
+        case `bool` :return `bool`;
+        case `number` :return `number`;
+        case `string` :return `string`;
+        case `undefined`: return `undefined`;        
+    }
+}
+
+// instanceof 的右侧只能是一个对象；无法检测基本类型，基本类型不是对象
+function instanceType (target) {
+    if(target instanceof String) {
+        return `String`;
+    } else if(target instanceof Array) {
+        return `Array`;
+    } else if(target instanceof Date) {
+        return `Date`;
+    }    
+}
+
+// 此方法无法辨别基本类型和基本包装类型之间的区别
+// 但是可以判断基本类型和基本包装类型
+// 此方法无法识别自定义的类型
+
+function toStringType(target) {
+    return  Object.prototype.toString.call(target);
+}
+
+/**
+ * 目前来看的最佳实践，可以判断绝大多数的类型
+ * 包括自定义的类在内也可以判断   
+ */
+function constructorType(target) {    
+    return (target.constructor.name);
+}
+
+
+console.log(constructorType(Dong));
+console.log(constructorType(Zhang));
+console.log(`--------`);
+console.log(cObj instanceof C);
+console.log(cObj instanceof D);
+
+console.log(constructorType(Parent));
+console.log(constructorType(Child));
+
 
 

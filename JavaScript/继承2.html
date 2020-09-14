@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function createObj(o) {
+            function F(){}
+            F.prototype = o;
+            return new F();
+        }
+        var person = {
+            name: 'kevin',
+            friends: ['daisy', 'kelly']
+        }
+
+        var person1 = createObj(person);
+        var person2 = createObj(person);
+
+        person1.name = 'person1';
+        console.log(person2.name); // kevin
+        console.log(person1.friends);
+
+        person1.firends = ['daisy', 'kelly','taylor'];
+        console.log(person2.friends); // ["daisy", "kelly", "taylor"]
+
+    </script>
+</body>
+</html>

@@ -20,15 +20,22 @@
         const needToReverse = document.getElementById('needToReverse').children;
 
         console.log(needToReverse);
+        console.log(typeof needToReverse);
+        const type = Object.prototype.toString.call(needToReverse);
+        console.log(type)
 
         // reverse start
 
         const stack = [];
-        for(let index = 0; index<needToReverse.length; index++) {
-            const dupNode = needToReverse[index].cloneNode(true);
+        
+        for(let index =  0;index < needToReverse.length;index++) { // 使用 for...in 循环遍历 needToReverse 时发现无法使用
+            
+            console.log(needToReverse[index]);
+            const dupNode = needToReverse[index].cloneNode(true); // 在谷歌浏览器中报错：Uncaught TypeError: needToReverse[index].cloneNode is not a function
             console.log(dupNode);
             stack.push(dupNode);
         }
+        // console.log(stack);
         const resultArray = [];
         for(let index = 0;index < needToReverse.length; index++) {
             resultArray[index] = stack.pop();

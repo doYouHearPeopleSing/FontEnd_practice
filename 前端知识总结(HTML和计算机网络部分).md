@@ -1,10 +1,5 @@
 前端部分知识大总结
 ======
-
-# w3cschool 基础部分
-
-## 第一个部分：HTML
-
 ### 什么是 HTML ？
 HTML 是用来描述网页的一种语言。
 
@@ -62,7 +57,9 @@ HTML 图像是通过 `<img>` 标签进行定义的。
 ```
 
 注释：图像的名称和尺寸是以属性的形式提供的。
-
+### HTML src 和 herf 的区别
+`href` 是`Hypertext Reference`的简写，表示超文本引用，指向网络资源所在位置
+`src`是`source`的简写，目的是要把文件下载到html页面中去。
 ### HTML`<div>` 和 `<span>`
 
 可以通过 `<div>` 和 `<span>` 将 HTML 元素组合起来。
@@ -146,7 +143,10 @@ HTML5 的 canvas 元素使用 JavaScript 在网页上绘制图像。
 
 canvas 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。
 
-# 网络
+# 计算机网络
+
+# 计算机网络层次构成和每个层次的常用协议
+![](网络分层及各个层用到的不同协议.png)
 
 URL - Uniform Resource Locator
 
@@ -396,3 +396,63 @@ HTTP 响应状态代码指示特定 HTTP 请求是否已成功完成。响应分
 
 
 
+# HTTP 有两类报文
+1. 请求报文
+2. 响应报文
+
+# HTTP 请求报文和响应报文都是由三个部分组成的：
+1. 开始行
+2. 首部行
+3. 实体主体
+
+
+其中首部行 ：用来说明浏览器、服务器或报文主体的一些信息。首部可以有好几行，也可以不使用
+
+**每一个首部行都有首部字段名和它的值，每一行在结束的地方都要回车和换行，整个首部行结束时，还有一空行将首部行和后面的实体主体分开**
+
+# HTTP 首部字段是什么？
+
+HTTP 首部字段（英语：HTTP header fields）是指在超文本传输协议（HTTP）的请求和响应报文中的首部行部分。它们定义了一个超文本传输协议事务中的操作参数。HTTP头部字段可以自己根据需要定义，因此可能在 Web 服务器和浏览器上发现非标准的首部字段。
+
+# 首部字段的基本格式
+以明文的字符串格式传输，是以冒号分隔的键名与键值对，以回车(CR)加换行(LF)符号序列结尾
+# 首部字段的类型
+HTTP 首部字段根据实际用途被分为以下 4 种类型：
+
+
+`通用首部字段`(英语：General Header Fields)
+`请求首部字段`(英语：Request Header Fields)
+`响应首部字段`(英语：Response Header Fields)
+`实体首部字段`(英语：Entity Header Fields)
+
+### 常见的请求首部字段：
+|Header|解释|示例|
+|---|---|---|
+|Accept	|指定客户端能够接收的内容类型	|Accept: text/plain, text/html|
+|Accept-Charset|	浏览器可以接受的字符编码集。|	Accept-Charset: iso-8859-5/utf-8|
+|Accept-Encoding|	指定浏览器可以支持的web服务器返回内容压缩编码类型。 |Accept-Encoding: compress, gzip
+
+### 常见的回应首部字段：
+|Header|解释|示例|
+|---|---|---|
+|Accept-Ranges|	表明服务器是否支持指定范围请求及哪种类型的分段请求|	Accept-Ranges: bytes|
+|Age	|从原始服务器到代理缓存形成的估算时间（以秒计，非负）|	Age: 12|
+|Allow	|对某网络资源的有效的请求行为，不允许则返回405	|Allow: GET, HEAD|
+|Content-Language|内容所使用的语言|Content-Language: da|
+|Content-Length|回应消息体的长度，以字节为单位|Content-Length:348|
+
+## 很著名的 Cookie
+#### 创建Cookie
+当服务器收到 HTTP 请求时，服务器可以在响应头里面添加一个 {{HTTPHeader("Set-Cookie")}}选项。浏览器收到响应后通常会保存下 Cookie，之后对该服务器每一次请求中都通过 {{HTTPHeader("Cookie")}} 请求头部将 Cookie 信息发送给服务器。另外，Cookie 的过期时间、域、路径、有效期、适用站点都可以根据需要来指定。
+
+Set-Cookie 响应头部和 Cookie 请求头部
+
+```
+HTTP/1.0 200 OK
+Content-type: text/html
+Set-Cookie: yummy_cookie=choco
+Set-Cookie: tasty_cookie=strawberry
+```
+
+博客园参考链接：https://www.cnblogs.com/onepixel/articles/7545959.html
+谢希仁教科书参考插图：![](一个完整的HTTP请求.png)

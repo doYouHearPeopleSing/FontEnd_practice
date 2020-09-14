@@ -28,27 +28,27 @@ function maxDeepth(node) {
     if(node) {
         let left=maxDeepth(node.left);
         let right=maxDeepth(node.right);
-        return ( (left > right) ? left : right )+1;        
+        return Math.max(left,right)+1;        
     }
 }
 
 const deepMax = maxDeepth(tree);
 console.log(`DeepMax Is:${deepMax}`);
 
-function minDepth (root) {
-    if(!root){
+function minDepth (node) {
+    if(!node){
         return 0
     }
-    if(root.right==null&&root.left==null){
+    if(node.right==null&&node.left==null){
         return 1
     }
-    if (root.left&&!root.right){
-        return 1+minDepth(root.left);
+    if (node.left&&!node.right){
+        return 1 + minDepth(node.left);
     }
-    if (!root.left&&root.right){
-        return 1+minDepth(root.right);
+    if (!node.left&&node.right){
+        return 1 + minDepth(node.right);
     }
-    return 1+Math.min(minDepth(root.left),minDepth(root.right)) //存在两个字节点
+    return 1 + Math.min(minDepth(node.left),minDepth(node.right)) //存在两个字节点
 
 };
 

@@ -1,5 +1,5 @@
 # CSS 概述
--CSS 指层叠样式表 英文全称：Cascading Style Sheetsl
+-CSS 指层叠样式表 英文全称：Cascading Style Sheets
 
 
 -样式定义如何显示 HTML 元素
@@ -100,7 +100,7 @@ selector {property: value}
 overflow 值不为 visible 的块元素
 
 
-display 值为 flow-root 的元素
+**display 值为 flow-root 的元素**
 
 
 contain 值为 layout、content 或 paint 的元素
@@ -117,15 +117,25 @@ contain 值为 layout、content 或 paint 的元素
 
 column-span 为 all 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（标准变更，Chrome bug）
 
+**块格式化上下文包含创建它的元素内部的所有内容.**
 
-块格式化上下文包含创建它的元素内部的所有内容.
-
-块格式化上下文对浮动定位（参见 float）与清除浮动（参见 clear）都很重要。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其它BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（Margin collapsing）也只会发生在属于同一BFC的块级元素之间。
+块格式化上下文对`浮动定位`与`清除浮动`都很重要。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其它BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（Margin collapsing）也只会发生在属于同一BFC的块级元素之间。
 
 BFC 主要的作用是：
 
 清除浮动
 防止同一 BFC 容器中的相邻元素间的外边距重叠问题
+
+## 一句话概括 BFC:
+`BFC 是页面上的一个隔离的独立容器`
+
+容器里面的子元素不会影响到外面元素。比如：内部滚动就是一个 BFC，当一个父容器的 overflow-y 设置为 auto 时，并且子容器的长度大于父容器时，就会出现内部滚动，无论内部的元素怎么滚动，都不会影响父容器以外的布局，这个父容器的渲染区域就叫 BFC。满足下列条件之一就可触发 BFC：
+
+根元素，即 HTML 元素
+float 的值不为 none
+overflow 的值不为 visible
+display 的值为 inline-block、table-cell、table-caption
+position 的值为 absolute 或 fixed
 
 # 选择器及其优先级
 
@@ -152,4 +162,55 @@ C 的值等于 `类选择器` 和 `属性选择器` 和 `伪类` 出现的总次
 D 的值等于 `标签选择器` 和 `伪元素` 出现的总次数 。
 
 比较规则是: 从左往右依次进行比较 ，较大者胜出，如果相等，则继续往右移动一位进行比较 。如果4位全部相等，则后面的会覆盖前面的
+
+可以将之视为一个一维数组来比较 :  `[A,B,C,D]`
+
+# 关于 CSS 中定位的几种方式
+## 语法
+position 属性
+
+## 取值
+### static
+该关键字指定元素使用正常的布局行为，即元素在文档常规流中当前的布局位置。此时 top, right, bottom, left 和 z-index 属性无效。
+### relative
+该关键字下，元素先放置在未添加定位时的位置，再在不改变页面布局的前提下调整元素位置（因此会在此元素未添加定位时所在位置留下空白）。position:relative 对 table-*-group, table-row, table-column, table-cell, table-caption 元素无效。
+### absolute
+元素会被移出正常文档流，并不为元素预留空间，通过指定元素相对于最近的非 static 定位祖先元素的偏移，来确定元素位置。绝对定位的元素可以设置外边距（margins），且不会与其他边距合并。
+### fixed
+元素会被移出正常文档流，并不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。fixed 属性会创建新的层叠上下文。当元素祖先的 transform, perspective 或 filter 属性非 none 时，容器由视口改为该祖先。
+
+# CSS 盒模型
+
+当对一个文档进行布局（lay out）的时候，浏览器的渲染引擎会根据 CSS 基础框盒模型（CSS basic box model），将所有元素表示为一个个矩形的盒子（box）。CSS 决定这些盒子的大小、位置以及属性（例如颜色、背景、边框尺寸）
+
+
+每个盒子由`四个部分`组成。如图，与盒子的四个组成区域相对应，每个盒子有四个边界：内容边界 Content edge、内边距边界 Padding Edge、边框边界 Border Edge、外边框边界 Margin Edge。
+
+
+CSS Box model
+
+
+内容区域 `content area`，由内容边界限制，容纳着元素的“真实”内容，例如文本、图像，或是一个视频播放器。它的尺寸为内容宽度（或称 content-box 宽度）和内容高度（或称 content-box 高度）。它通常含有一个背景颜色（默认颜色为透明）或背景图像。
+
+
+内边距区域 `padding area` 由内边距边界限制，扩展自内容区域，负责延伸内容区域的背景，填充元素中内容与边框的间距。它的尺寸是 padding-box 宽度 和 padding-box 高度。
+
+内边距的粗细可以由 padding-top、padding-right、padding-bottom、padding-left，和简写属性 padding 控制。
+
+边框区域 `border area `由边框边界限制，扩展自内边距区域，是容纳边框的区域。其尺寸为 border-box  宽度 和 border-box 高度。
+
+
+边框的粗细由 border-width 和简写的 border 属性控制。如果 box-sizing 属性被设为 border-box，那么边框区域的大小可明确地通过 width、min-width, max-width、height、min-height，和 max-height 属性控制。假如框盒上设有背景（background-color 或 background-image），背景将会一直延伸至边框的外沿（默认为在边框下层延伸，边框会盖在背景上）。此默认表现可通过 CSS 属性 background-clip 来改变。
+
+
+外边距区域 margin area 由外边距边界限制，用空白区域扩展边框区域，以分开相邻的元素。它的尺寸为 margin-box 宽度 和 margin-box 高度。
+
+
+外边距区域的大小由 margin-top、margin-right、margin-bottom、margin-left，和简写属性 margin 控制。在发生外边距合并的情况下，由于盒之间共享外边距，外边距不容易弄清楚。
+
+# IE盒模型和W3C标准盒模型的区别是什么？
+1. W3C 标准盒模型：
+属性`width`,`height`只包含内容`content`，不包含`border`和`padding`
+2. IE 盒模型：
+属性`width,height 包含 border和padding`，指的是`content + padding + border`。
 
