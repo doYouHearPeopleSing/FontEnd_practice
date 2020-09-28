@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+
+        float CSS属性指定一个元素应沿其容器的左侧或右侧放置，
+        允许文本和内联元素环绕它。该元素从网页的正常流动(文档流)中移除，
+        尽管仍然保持部分的流动性（与绝对定位相反）
+
+        left
+        表明元素必须浮动在其所在的块容器左侧的关键字。
+        right
+        表明元素必须浮动在其所在的块容器右侧的关键字。
+        none
+        表明元素不进行浮动的关键字。
+        inline-start
+        关键字，表明元素必须浮动在其所在块容器的开始一侧，在ltr脚本中是左侧，在rtl脚本中是右侧。
+        inline-end
+        关键字，表明元素必须浮动在其所在块容器的结束一侧，在ltr脚本中是右侧，在rtl脚本中是左侧。
+         */
+        .box {
+            width: 1000px;
+            height: 1000px;
+            background-color: dimgray;
+        }
+        .one {
+            background-color:red;
+            width: 200px;
+            height: 200px;
+            float: right;
+        }
+
+        .two {
+            background-color: cyan;
+            float: right;
+            width: 200px;
+            height: 200px;
+        }
+
+        .three {
+            background-color: darkorange;
+            width: 200px;
+            height: 200px;
+            float: left;
+            /* float: right; */
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis tenetur inventore velit dolorum veritatis mollitia quasi, consequatur aliquid. Totam, at dolores! Possimus, id dicta necessitatibus voluptates harum ipsam exercitationem quo.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sequi!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum corporis ut excepturi tempore, repellendus illum laboriosam in, reprehenderit voluptates sapiente officia fugit vitae quia error numquam officiis quo. Eos, unde. Quisquam numquam nemo architecto voluptates molestias, inventore veniam minima aperiam perspiciatis cum laborum itaque, laudantium voluptatum, tempore accusantium? Ut ad id rerum libero est facere delectus accusamus amet nemo reprehenderit repudiandae odit illo, eaque molestias non aperiam harum vitae. Dolore repellendus temporibus, voluptatem aliquam neque animi odio mollitia amet, eligendi soluta dicta ad in impedit necessitatibus officia laboriosam. Quas repellat accusantium, vero inventore voluptatibus ullam odit. Impedit repellendus temporibus esse.
+        <div class = 'one'> 1 </div>
+        <div class = 'two'> 2 </div>
+        <div class = 'three'> 3 </div>
+    </div>
+</body>
+</html>

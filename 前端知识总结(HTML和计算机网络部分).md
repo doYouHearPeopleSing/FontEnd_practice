@@ -330,7 +330,19 @@ Sec-WebSocket-Accept: K7DJLdLooIwIG/MOpvWFB3y3FE8=
 
 # 状态码的描述
 
-HTTP 响应状态代码指示特定 HTTP 请求是否已成功完成。响应分为五类：信息响应(100–199)，成功响应(200–299)，重定向(300–399)，客户端错误(400–499)和服务器错误 (500–599)。状态代码由 section 10 of RFC 2616定义
+HTTP 响应状态代码指示特定 HTTP 请求是否已成功完成。响应分为五类：
+
+# 信息响应(100–199)
+
+# 成功响应(200–299)
+
+# 重定向(300–399)
+
+# 客户端错误(400–499)
+
+# 服务器错误 (500–599)
+
+# 状态代码由 section 10 of RFC 2616定义
 
 ## 信息响应
 **`100 Continue`**
@@ -376,7 +388,6 @@ HTTP 响应状态代码指示特定 HTTP 请求是否已成功完成。响应分
 
 服务器已经理解请求，但是拒绝执行它。与 401 响应不同的是，身份验证并不能提供任何帮助，而且这个请求也不应该被重复提交。如果这不是一个 HEAD 请求，而且服务器希望能够讲清楚为何请求不能被执行，那么就应该在实体内描述拒绝的原因。当然服务器也可以返回一个 404 响应，假如它不希望让客户端获得任何信息。
 
-
 **`404 Not Found`**
 
 
@@ -419,7 +430,6 @@ HTTP 首部字段（英语：HTTP header fields）是指在超文本传输协议
 # 首部字段的类型
 HTTP 首部字段根据实际用途被分为以下 4 种类型：
 
-
 `通用首部字段`(英语：General Header Fields)
 `请求首部字段`(英语：Request Header Fields)
 `响应首部字段`(英语：Response Header Fields)
@@ -430,7 +440,7 @@ HTTP 首部字段根据实际用途被分为以下 4 种类型：
 |---|---|---|
 |Accept	|指定客户端能够接收的内容类型	|Accept: text/plain, text/html|
 |Accept-Charset|	浏览器可以接受的字符编码集。|	Accept-Charset: iso-8859-5/utf-8|
-|Accept-Encoding|	指定浏览器可以支持的web服务器返回内容压缩编码类型。 |Accept-Encoding: compress, gzip
+|Accept-Encoding|	指定浏览器可以支持的web服务器返回内容压缩编码类型。 |Accept-Encoding: compress, gzip|
 
 ### 常见的回应首部字段：
 |Header|解释|示例|

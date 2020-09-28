@@ -144,7 +144,9 @@ position 的值为 absolute 或 fixed
 ## 优先级是如何计算的？
 
 下面列表中，选择器类型的优先级是递增的：
-内联 > ID选择器 > 类选择器 > 标签选择器。
+
+## 内联 > ID选择器 > 类选择器 > 标签选择器
+
 1. 内联
 2. ID 选择器（例如，#example）
 3. 类选择器 (例如，.example)，属性选择器（例如，[type="radio"]）和伪类（例如，:hover）
@@ -187,30 +189,35 @@ position 属性
 每个盒子由`四个部分`组成。如图，与盒子的四个组成区域相对应，每个盒子有四个边界：内容边界 Content edge、内边距边界 Padding Edge、边框边界 Border Edge、外边框边界 Margin Edge。
 
 
-CSS Box model
 
+## 内容区域 `content area`
 
-内容区域 `content area`，由内容边界限制，容纳着元素的“真实”内容，例如文本、图像，或是一个视频播放器。它的尺寸为内容宽度（或称 content-box 宽度）和内容高度（或称 content-box 高度）。它通常含有一个背景颜色（默认颜色为透明）或背景图像。
+由内容边界限制，容纳着元素的“真实”内容，例如文本、图像，或是一个视频播放器。它的尺寸为内容宽度（或称 content-box 宽度）和内容高度（或称 content-box 高度）。它通常含有一个背景颜色（默认颜色为透明）或背景图像。
 
+## 内边距区域 `padding area` 
 
-内边距区域 `padding area` 由内边距边界限制，扩展自内容区域，负责延伸内容区域的背景，填充元素中内容与边框的间距。它的尺寸是 padding-box 宽度 和 padding-box 高度。
+由内边距边界限制，扩展自内容区域，负责延伸内容区域的背景，填充元素中内容与边框的间距。它的尺寸是 padding-box 宽度 和 padding-box 高度。
 
 内边距的粗细可以由 padding-top、padding-right、padding-bottom、padding-left，和简写属性 padding 控制。
 
-边框区域 `border area `由边框边界限制，扩展自内边距区域，是容纳边框的区域。其尺寸为 border-box  宽度 和 border-box 高度。
+## 边框区域 `border area `
+
+由边框边界限制，扩展自内边距区域，是容纳边框的区域。其尺寸为 border-box  宽度 和 border-box 高度。
 
 
 边框的粗细由 border-width 和简写的 border 属性控制。如果 box-sizing 属性被设为 border-box，那么边框区域的大小可明确地通过 width、min-width, max-width、height、min-height，和 max-height 属性控制。假如框盒上设有背景（background-color 或 background-image），背景将会一直延伸至边框的外沿（默认为在边框下层延伸，边框会盖在背景上）。此默认表现可通过 CSS 属性 background-clip 来改变。
 
+## 外边距区域 `margin area` 
 
-外边距区域 margin area 由外边距边界限制，用空白区域扩展边框区域，以分开相邻的元素。它的尺寸为 margin-box 宽度 和 margin-box 高度。
+由外边距边界限制，用空白区域扩展边框区域，以分开相邻的元素。它的尺寸为 margin-box 宽度 和 margin-box 高度。
 
 
 外边距区域的大小由 margin-top、margin-right、margin-bottom、margin-left，和简写属性 margin 控制。在发生外边距合并的情况下，由于盒之间共享外边距，外边距不容易弄清楚。
 
 # IE盒模型和W3C标准盒模型的区别是什么？
-1. W3C 标准盒模型：
+## 1.W3C 标准盒模型：
 属性`width`,`height`只包含内容`content`，不包含`border`和`padding`
-2. IE 盒模型：
+
+## 2.IE 模型：
 属性`width,height 包含 border和padding`，指的是`content + padding + border`。
 

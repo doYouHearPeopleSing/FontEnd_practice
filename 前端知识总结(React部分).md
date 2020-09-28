@@ -222,15 +222,16 @@ export default function ClickNumber() {
 ```
 
 
-## 
+
 # React 安全性考虑
 
 主要由 Facebook 开发和维护， MIT 许可
 
 # React 生命周期
 
+生命周期方法，用于在组件不同阶段执行自定义功能。在组件被创建并插入到 DOM 时（即挂载中阶段（mounting）），组件更新时，组件取消挂载或从 DOM 中删除时，都有可以使用的生命周期方法。
 
-组件的生命周期可分成三个状态：
+每个组件都包含“生命周期方法”，我们可以重写这些方法，以便于在运行过程中特定的阶段执行这些方法
 
 1. Mounting：已插入真实 DOM
 2. Updating：正在被重新渲染
@@ -242,17 +243,152 @@ export default function ClickNumber() {
 
 生命周期的方法有：
 
-componentWillMount 在渲染前调用,在客户端也在服务端。
+# 挂载 Mounting
+当组件实例被创建并插入 DOM 中时，其生命周期调用顺序如下：
 
-componentDidMount : 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异步操作阻塞UI)。
+constructor()
+static getDerivedStateFromProps()
+render()
+componentDidMount()
+注意:
 
-componentWillReceiveProps 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化render时不会被调用。
+下述生命周期方法即将过时，在新代码中应该避免使用它们：
 
-shouldComponentUpdate 返回一个布尔值。在组件接收到新的props或者state时被调用。在初始化时或者使用forceUpdate时不被调用。
-可以在你确认不需要更新组件时使用。
+UNSAFE_componentWillMount()
+# 更新 Updating
+当组件的 props 或 state 发生变化时会触发更新。组件更新的生命周期调用顺序如下：
 
-componentWillUpdate在组件接收到新的props或者state但还没有render时被调用。在初始化时不会被调用。
+static getDerivedStateFromProps()
+shouldComponentUpdate()
+render()
+getSnapshotBeforeUpdate()
+componentDidUpdate()
+注意:
 
-componentDidUpdate 在组件完成更新后立即调用。在初始化时不会被调用。
+下述方法即将过时，在新代码中应该避免使用它们：
 
-componentWillUnmount在组件从 DOM 中移除之前立刻被调用
+UNSAFE_componentWillUpdate()
+UNSAFE_componentWillReceiveProps()
+
+# 卸载 Unmounting
+
+当组件从 DOM 中移除时会调用如下方法：
+
+componentWillUnmount()
+# 错误处理
+当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法：
+
+static getDerivedStateFromError()
+componentDidCatch()
+
+# 生命周期常见的函数
+## render()
+```JavaScript
+render()
+```
+render() 方法是 class 组件中唯一必须实现的方法。
+
+当 render 被调用时，它会检查 this.props 和 this.state 的变化并返回以下类型之一：
+
+1. React 元素。通常通过 JSX 创建。例如，`<div />` 会被 React 渲染为 DOM 节点，`<MyComponent />` 会被 React 渲染为自定义组件，无论是 `<div />` 还是 `<MyComponent />` 均为 React 元素。
+2. 数组或 fragments。 使得 render 方法可以返回多个元素。欲了解更多详细信息，请参阅 fragments 文档。
+Portals。可以渲染子节点到不同的 DOM 子树中。欲了解更多详细信息，请参阅有关 portals 的文档
+3. 字符串或数值类型。它们在 DOM 中会被渲染为文本节点
+4. 布尔类型或 null。什么都不渲染。（主要用于支持返回 test && `<Child />` 的模式，其中 test 为布尔类型。)
+
+render() 函数应该为纯函数，这意味着在不修改组件 state 的情况下，每次调用时都返回相同的结果，并且它不会直接与浏览器交互。
+
+如需与浏览器进行交互，请在 componentDidMount() 或其他生命周期方法中执行你的操作。保持 render() 为纯函数，可以使组件更容易思考。
+
+注意
+
+如果 shouldComponentUpdate() 返回 false，则不会调用 render()。
+
+## constructor()
+```JavaScript
+constructor(props)
+```
+如果不初始化 state 或不进行方法绑定，则不需要为 React 组件实现构造函数。
+
+在 React 组件挂载之前，会调用它的构造函数。在为 React.Component 子类实现构造函数时，应在其他语句之前前调用 super(props)。否则，this.props 在构造函数中可能会出现未定义的 bug。
+
+通常，在 React 中，构造函数仅用于以下两种情况：
+
+通过给 this.state 赋值对象来初始化内部 state。
+为事件处理函数绑定实例
+在 constructor() 函数中不要调用 setState() 方法。如果你的组件需要使用内部 state，请直接在构造函数中为 this.state 赋值初始 state：
+```JavaScript
+constructor(props) {
+  super(props);
+  // 不要在这里调用 this.setState()
+  this.state = { counter: 0 };
+  this.handleClick = this.handleClick.bind(this);
+}
+```
+只能在构造函数中直接为 this.state 赋值。如需在其他方法中赋值，你应使用 this.setState() 替代。
+
+要避免在构造函数中引入任何副作用或订阅。如遇到此场景，请将对应的操作放置在 componentDidMount 中。
+
+注意
+
+避免将 props 的值复制给 state！这是一个常见的错误：
+```JavaScript
+constructor(props) {
+ super(props);
+ // 不要这样做
+ this.state = { color: props.color };
+}
+```
+如此做毫无必要（你可以直接使用 this.props.color），同时还产生了 bug（更新 prop 中的 color 时，并不会影响 state）。
+
+只有在你刻意忽略 prop 更新的情况下使用。此时，应将 prop 重命名为 initialColor 或 defaultColor。必要时，你可以修改它的 key，以强制“重置”其内部 state。
+
+请参阅关于避免派生状态的博文，以了解出现 state 依赖 props 的情况该如何处理。
+
+## componentDidMount()
+```JavaScript
+componentDidMount()
+```
+componentDidMount() 会在组件挂载后（插入 DOM 树中）立即调用。依赖于 DOM 节点的初始化应该放在这里。如需通过网络请求获取数据，此处是实例化请求的好地方。
+
+这个方法是比较适合添加订阅的地方。如果添加了订阅，请不要忘记在 componentWillUnmount() 里取消订阅
+
+你可以在 componentDidMount() 里直接调用 setState()。它将触发额外渲染，但此渲染会发生在浏览器更新屏幕之前。如此保证了即使在 render() 两次调用的情况下，用户也不会看到中间状态。请谨慎使用该模式，因为它会导致性能问题。通常，你应该在 constructor() 中初始化 state。如果你的渲染依赖于 DOM 节点的大小或位置，比如实现 modals 和 tooltips 等情况下，你可以使用此方式处理
+
+## componentDidUpdate()
+componentDidUpdate(prevProps, prevState, snapshot)
+componentDidUpdate() 会在更新后会被立即调用。首次渲染不会执行此方法。
+
+当组件更新后，可以在此处对 DOM 进行操作。如果你对更新前后的 props 进行了比较，也可以选择在此处进行网络请求。（例如，当 props 未发生变化时，则不会执行网络请求）。
+```JavaScript
+componentDidUpdate(prevProps) {
+  // 典型用法（不要忘记比较 props）：
+  if (this.props.userID !== prevProps.userID) {
+    this.fetchData(this.props.userID);
+  }
+}
+```
+你也可以在 componentDidUpdate() 中直接调用 setState()，但请注意它必须被包裹在一个条件语句里，正如上述的例子那样进行处理，否则会导致死循环。它还会导致额外的重新渲染，虽然用户不可见，但会影响组件性能。不要将 props “镜像”给 state，请考虑直接使用 props。 欲了解更多有关内容，请参阅为什么 props 复制给 state 会产生 bug。
+
+如果组件实现了 getSnapshotBeforeUpdate() 生命周期（不常用），则它的返回值将作为 componentDidUpdate() 的第三个参数 “snapshot” 参数传递。否则此参数将为 undefined。
+
+注意
+
+如果 shouldComponentUpdate() 返回值为 false，则不会调用 componentDidUpdate()。
+
+## componentWillUnmount()
+```JavaScript
+componentWillUnmount()
+```
+componentWillUnmount() 会在组件卸载及销毁之前直接调用。在此方法中执行必要的清理操作，例如，清除 timer，取消网络请求或清除在 componentDidMount() 中创建的订阅等。
+
+componentWillUnmount() 中不应调用 setState()，因为该组件将永远不会重新渲染。组件实例卸载后，将永远不会再挂载它。
+
+# Babel
+1. Parse(解析)：将源代码转换成更加抽象的表示方法（例如抽象语法树）
+2. Transform(转换)：对（抽象语法树）做一些特殊处理，让它符合编译器的期望
+3. Generate(代码生成)：将第二步经过转换过的（抽象语法树）生成新的代码
+
+1. babel 将 React 代码解析为抽象语法树
+2. 开发者利用 babel 插件定义转换规则，根据原本的抽象语法树生成一个符合小程序规则的新抽象语法树
+3. babel 则根据新的抽象语法树生成代码，此时的代码就是符合小程序规则的新代码
