@@ -88,22 +88,12 @@ function toStringType(target) {
 }
 
 /**
- * 目前来看的最佳实践，可以判断绝大多数的类型
+ * 目前来看的最佳实践，可以判断基本类型/基本包装类型/自定义的类
  * 包括自定义的类在内也可以判断   
  */
 function constructorType(target) {    
     return (target.constructor.name);
 }
 
-
-console.log(constructorType(Dong));
-console.log(constructorType(Zhang));
-console.log(`--------`);
-console.log(cObj instanceof C);
-console.log(cObj instanceof D);
-
-console.log(constructorType(Parent));
-console.log(constructorType(Child));
-
-
+// 经过测试，稳定好用
 
