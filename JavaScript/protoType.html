@@ -52,6 +52,14 @@
 
         console.log(Object.prototype.__proto__);
         console.log(Object.prototype.__proto__ === null);
+
+        console.log(`--------`);
+
+        function Person1() {
+
+        }
+        const person1 = new Person1();
+        console.log(person1.__proto__ === Person1.prototype);
         
     </script>
 </body>

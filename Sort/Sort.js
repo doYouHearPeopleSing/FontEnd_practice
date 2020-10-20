@@ -1,50 +1,75 @@
 const arrTest = [9,8,7,6,5,4,3,2,1];
 
+const Compare = {
+    LESS_THAN: -1,
+    BIGGER_THAN: 1,
+    EQUALS: 0
+};
 
-function swapValue(num1,num2) {
-    let temp = num1;
-    num1 = num2;
-    num2 = temp;
+function defaultCompare (a,b) {
+    return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
 }
 
-function bubbleSort(arr) {
-    const len = arr.length;
-    for(let i = 0; i< len - 1;i++) {
-        for(let j = 0;j < len - 1 - i ;j++){
-            if(arr[j] > arr[j+1]) {
-                let temp = arr[j+1];
-                arr[j+1] = arr[j];
-                arr[j] = temp;
-            }
-        }        
-    }
-    console.log(arr);
+function swap (array,a,b) {
+    [array[a],array[b]] = [array[b],array[a]];
 }
 
-function selectSort(arr) {
-    const len = arr.length;
-    let minIndex,temp;
-    for(let i = 0;i <len - 1;i++) {
-        minIndex = i;
-        for(let j = i + 1;j <len;j++) {
-            if(arr[j] < arr[minIndex]) {
-                minIndex = j;
+// bubbleSort
+
+function bubbleSort (array,compareFn = defaultCompare) {
+    const { length } = array;
+    for(let i = 0;i < length; i++) {
+        for(let j = 0;j < length - 1; j++) {
+            if(compareFn(array[j],array[j+1]) === Compare.BIGGER_THAN)  {
+                swap( array,j,j+1 );
             }
         }
-        temp = arr[i];
-        arr[i] = arr[minIndex];
-        arr[minIndex] = temp;
-        console.log(arr)
     }
-
-    console.log(arr);
+    return array
 }
 
-function insertSort(arr) {
-    
-    
+
+// selectionSort
+
+function selectionSort (array,compareFn = defaultCompare) {
+    const { length } = array;
+    let indexMin;
+    for(let i = 0; i < length - 1;i++) {
+        indexMin = i;
+        for( let j = i; j < length;j++) {
+            if(compareFn(array[indexMin],array[j]) === Compare.BIGGER_THAN) {
+                indexMin = j;
+            }
+        }
+        if (i !== indexMin) {
+            swap(array,i,indexMin);
+        }
+    }
+    return array;
 }
 
-insertSort(arrTest)
+function mergeSort(array, compareFn = defaultCompare) {
+    if(array.length > 1) {
+        const { length } = array;
+        const middle = Math.floor(length / 2);
+        const left = mergeSort(array.slice(0,middle,compareFn));
+        const right = mergeSort(array.slice(middle,length),compareFn);
+        array = merge(left,right,compareFn);
+    }
+    return array;
+}
+
+function merge(left,right,compareFn) {
+    let i = 0;
+    let j = 0;
+    const result = [];
+    while( i < left.length && j < right.length) {
+        result.push(
+            compareFn(left[i],right[i] === Compare.LESS_THAN ? left[i++] : right[j++])
+        );
+    }
+    return result.concat(i < left.length ? left.slice(i) :right.slice(j));
+}
+
 
 

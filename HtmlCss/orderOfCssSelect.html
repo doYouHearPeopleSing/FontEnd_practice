@@ -6,9 +6,13 @@
     <title>Document</title>
     <style>        
     
-    .classB { color:red;}
-    .classC { color:yellow;}
+    
+    
     .classA { color:blue;}
+
+    .classC { color:yellow;}
+
+    .classB { color:red;}
     #ID {
         color:yellowgreen;
     }
@@ -16,18 +20,10 @@
 </head>
 <body>
 <p id = 'ID' class="  classA classB">hello</p>
+<!-- ID 选择器大于 class 选择器 -->
+
 <p class="  classC classB">hello</p>
-<script>
-    var test = (function(i) {
-        return function() {
-             console.log(i *= 3);
-        }
-    })(2);
+<!-- 同样是 class 选择器，要看在 样式文件中出现的先后而不是选择器中规定的先后  -->
 
-    // console.log(typeof test(8));
-    test();
-
-    add test reset;
-</script>
 </body>
 </html>

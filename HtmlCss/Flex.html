@@ -8,8 +8,14 @@
         .box {
             display: flex;
             flex-direction: row;
-            /* justify-content: center; */
+
+
+            flex-wrap: nowrap;
+
+            justify-content: center;
             align-items: center;
+
+
             background-color:seagreen;
             width: 1000px;
             height: 1000px;
@@ -17,27 +23,21 @@
         .one {
             background-color:red;
             width: 200px;
-            height: 200px;
-
-            flex-grow: 1;
         }
 
         .two {
             background-color: cyan;
-            width: 200px;
-            height: 200px;
-
-            /* 此种情况下可保持中间元素的大小始终不变，两侧自适应 */
-            flex-grow: 0;
-            flex-shrink: 0;
+            width: 200px;            
         }
 
         .three {
             background-color: darkorange;
-            width: 200px;
-            height: 200px;
+            width: 200px; 
+        }
 
-            flex-grow: 1;
+        .four {
+            background-color: blue;
+            width: 200px; 
         }
            
     </style>
@@ -47,7 +47,7 @@
         <div class = 'one'>1</div>
         <div class = 'two'>2</div>
         <div class = 'three'>3</div>
+        <div class = 'four'>4</div>
     </div>
-    <div style="width: 200px;background-color: royalblue;margin: auto;">TEST</div>
-</body>
+</body> 
 </html>

@@ -11,20 +11,43 @@
 var circle = {
     radius: 10,
     name:'DongShufeng',
+    thisPrint() {
+        console.log(this);
+    },
     outerDiameter() {
-        const self = this;
+        // const self = this;
+        console.log(this);
+        var test = {
+            fun: innerDiameter = () => {
+                console.log(this);
+            }
+        };
         var innerDiameter = () => {
             console.log(2 * this.radius);
             console.log(this);
-            console.log(self);
-            console.log(self === this);
+            // console.log(self);
+            // console.log(self === this);
         };
         innerDiameter();
     }
 };
 
 circle.outerDiameter(); 
+console.log(`--------`)
 
+let user = {
+	name : 'leo',
+    say : () => {
+        console.log(this);
+    },
+    hello(){
+        let fun = () => console.log(this);
+        fun();
+    }
+}
+
+user.say();   // hello      => say() 外部函数是 window
+user.hello(); // hello leo  => fun() 外部函数是 hello
     </script>
 </body>
 </html>

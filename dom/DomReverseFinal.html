@@ -24,9 +24,13 @@
     </div>
     <script>
         
+        // 这个函数将递归地将这个dom节点及其子节点反转
         function resver(resverDom) {
             
             const children = resverDom.children;
+            console.log(children);
+            console.log(children.constructor.name);
+            
             const stack = [];
 
             for(let i = 0;i<children.length;i++){
@@ -39,8 +43,7 @@
 
             for(let i = 0;i<children.length;i++) {
                 resverDom.appendChild(stack.pop());
-            }
-
+            }  
         }
         
         resver(document.getElementById('div'));

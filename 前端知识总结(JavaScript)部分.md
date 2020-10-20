@@ -285,10 +285,10 @@ https://img2018.cnblogs.com/blog/1090617/202001/1090617-20200115195412174-123584
 
 # JavaScript 判断类型的方法
 ## 简述
-在 ECMAScript 规范中，共定义了 7 种数据类型，分为 `基本类型` 和 `引用类型` 两大类，如下所示：
+在 ECMAScript 规范中，共定义了 8 种数据类型，分为 `基本类型` 和 `引用类型` 两大类，如下所示：
 
 ```
-基本类型：String、Number、Boolean、Symbol、Undefined、Null 
+基本类型：Undefined   Null   Boolean   Number   String   Symbol  BigInt
 
 引用类型：Object
 ```
@@ -317,7 +317,7 @@ typeof newRegExp();      // object 无效
 # Node.js
 `Node.js` 是一个基于 `Chrome V8` 引擎的 `JavaScript` 运行环境，它的运行不依赖于浏览器作为宿主环境，而是和服务端程序一样可以独立的运行，这使得 `JavaScript` 编程第一次从客户端被带到了服务端，`Node.js` 在服务端的优势是，它采用单线程和异步 `I/O` 模型，实现了一个高并发、高性能的运行时环境。相比传统的多线程模型，`Node.js` 实现简单，并且可以减少资源开销。
 
-## Node.js 的核心模块有哪些？
+# Node.js 的核心模块有哪些？
 
 # ES6(ES2015)
 
