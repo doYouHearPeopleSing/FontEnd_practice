@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = 'parent'>
+        <div id = '1'>1</div>
+        <div id = '2'>2</div>
+    </div>
+    <script>       
+        
+        function nodeExchange2(node1,node2) {
+            const firstNodeParent = node1.parentNode;
+            const secondNodeParent = node2.parentNode;
+            
+            if(firstNodeParent === secondNodeParent) {
+                node1.parentNode.insertBefore(node2,node1);
+            }
+        }
+
+        nodeExchange2(document.getElementById('1'),document.getElementById('2'))
+    </script>
+</body>
+</html>
