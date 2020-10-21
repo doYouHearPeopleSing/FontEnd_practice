@@ -17,4 +17,20 @@ git diff master origin/master
 git diff --stat master origin/master
 ```
 
-# 如何进行
+## 如何进行版本回退
+### 首先我们要查看我们想要跳转到哪个版本上，查看序列号
+```
+git log
+```
+
+### 在查看序列号之后呢，我们可以进行跳转
+```
+git reset xxxx
+```
+### 我们该如何回去呢？
+```
+git reflog
+```
+查看以往的历史操作
+
+之后可以看到你跳转之前的分支所在
