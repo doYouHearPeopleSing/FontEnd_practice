@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript TIME COUNTER</title>
+        <style>
+            #container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+
+                height: 800px;
+            }
+            div {
+                background-color: crimson;
+                color: palegoldenrod;
+                font-size: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = 'container'>
+            到这一秒钟，我和王含玉小宝贝儿已经在一起 
+            <div id="_d">00</div>
+            <div id="_h">00</div>
+            <div id="_m">00</div>
+            <div id="_s">00</div>            
+        </div>
+        <script type="text/javascript">
+            function countTime() {
+
+                var date = new Date();
+                var now = date.getTime();    
+                var endDate = new Date("2020-10-20  19:00:00");//设置截止时间
+                var end = endDate.getTime();
+                var leftTime = now - end; //时间差             
+                
+                var d, h, m, s, ms;
+                if(leftTime >= 0) {
+                    d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
+                    h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
+                    m = Math.floor(leftTime / 1000 / 60 % 60);
+                    s = Math.floor(leftTime / 1000 % 60);
+                    ms = Math.floor(leftTime % 1000);
+                    
+                }                 
+                
+                document.getElementById("_d").innerHTML = d + "天";
+                document.getElementById("_h").innerHTML = h + "时";
+                document.getElementById("_m").innerHTML = m + "分";
+                document.getElementById("_s").innerHTML = s + "秒";                
+               
+            }
+
+            setInterval(countTime,1000)
+        </script>
+    </body>
+</html>

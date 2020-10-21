@@ -4,7 +4,7 @@ let str = 'cc dd aa bbbbbb ee';
 
 // console.log(str); //split 不会改变原先的字符串
 
-const strArr = str.split(' ');
+const strArr = str.split(' ').join('');
 
 console.log(strArr);
 

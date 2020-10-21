@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        通过在控制台中的对比可以发现
+
+        通过字符串变量定义的是在原型链上继承了 Object 对象而来的对象
+
+        通过 Object.create(null) 创建的对象是 pure 干净的纯对象，没有原型链上的其他内容
+
+    
+     -->
+    <script>
+        const objEmpty = {};
+        const objByCreate = Object.create(null);
+        console.log(objEmpty);
+        console.log(objByCreate);
+        
+    </script>
+</body>
+</html>

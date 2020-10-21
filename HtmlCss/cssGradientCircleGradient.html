@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+    <style>
+        #grad1 {
+            height: 150px;
+            width: 200px;
+            background-image: radial-gradient(rgba(255,0,0,0),rgba(255,255,0,1)); /* 标准的语法（必须放在最后） */
+        }
+
+        #grad2 {
+            height: 150px;
+            width: 200px;
+            background-image: radial-gradient(circle at 20% 20%, rgba(200,0,0,0),  rgba(200,0,0,1)); /* 标准的语法（必须放在最后） */
+        }
+        /* 
+        rgba() 函数中的最后一个参数可以是从 0 到 1 的值，它定义了颜色的透明度：
+        0 表示完全透明
+        1 表示完全不透明
+
+        默认是椭圆的，可以自定义为圆形 
+        CIRCLE XX% XX% 
+
+        可以定位放射点的中心
+         */
+    </style>
+</head>
+    <body>
+
+        <h3>径向渐变 - 形状</h3>
+
+        <p><strong>椭圆形 Ellipse（默认）：</strong></p>
+        <div id="grad1"></div>
+
+        <p><strong>圆形 Circle：</strong></p>
+        <div id="grad2"></div>
+
+        <p><strong>注意：</strong> Internet Explorer 9 及之前的版本不支持渐变。</p>
+
+    </body>
+</html>
