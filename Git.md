@@ -16,3 +16,5 @@ git diff master origin/master
 ```
 git diff --stat master origin/master
 ```
+
+# 如何进行
