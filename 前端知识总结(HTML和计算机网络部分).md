@@ -271,6 +271,25 @@ POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web �
 
 # WebScoket 基础知识
 
+
+# WebScoket 常见的 API
+```JavaScript
+var ws = new WebSocket("wss://echo.websocket.org");
+
+ws.onopen = function(evt) { 
+  console.log("Connection open ..."); 
+  ws.send("Hello WebSockets!");
+};
+
+ws.onmessage = function(evt) {
+  console.log( "Received Message: " + evt.data);
+  ws.close();
+};
+
+ws.onclose = function(evt) {
+  console.log("Connection closed.");
+};      
+```
 ## 一句话概括
 **WebSocket 是一种网络传输协议，可在单个TCP连接上进行全双工通信，位于OSI模型的应用层**
 
