@@ -10,10 +10,11 @@ function defaultCompare (a,b) {
     return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
 }
 
+/*
 function swap (array,a,b) {
-    [array[a],array[b]] = [array[b],array[a]];
+     [array[a],array[b]] = [array[b],array[a]];
 }
-
+*/
 // bubbleSort
 
 function bubbleSort (array,compareFn = defaultCompare) {
@@ -48,28 +49,74 @@ function selectionSort (array,compareFn = defaultCompare) {
     return array;
 }
 
-function mergeSort(array, compareFn = defaultCompare) {
-    if(array.length > 1) {
-        const { length } = array;
-        const middle = Math.floor(length / 2);
-        const left = mergeSort(array.slice(0,middle,compareFn));
-        const right = mergeSort(array.slice(middle,length),compareFn);
-        array = merge(left,right,compareFn);
+
+// MergeSort
+function mergeSort(arr) {  //采用自上而下的递归方法
+    var len = arr.length;
+    if(len < 2) {
+        return arr;
     }
-    return array;
+    var middle = Math.floor(len / 2),
+        left = arr.slice(0, middle),
+        right = arr.slice(middle);
+    return merge(mergeSort(left), mergeSort(right));
 }
 
-function merge(left,right,compareFn) {
-    let i = 0;
-    let j = 0;
-    const result = [];
-    while( i < left.length && j < right.length) {
-        result.push(
-            compareFn(left[i],right[i] === Compare.LESS_THAN ? left[i++] : right[j++])
-        );
+function merge(left, right)
+{
+    var result = [];    
+    while (left.length && right.length) {
+        if (left[0] <= right[0]) {
+            result.push(left.shift());
+        } else {
+            result.push(right.shift());
+        }
     }
-    return result.concat(i < left.length ? left.slice(i) :right.slice(j));
+
+    while (left.length)
+        result.push(left.shift());
+
+    while (right.length)
+        result.push(right.shift());
+    
+    return result;
 }
 
 
+//quickSort
+
+function quickSort(arr, left, right) {
+    var len = arr.length,
+        partitionIndex,
+        left = typeof left != 'number' ? 0 : left,
+        right = typeof right != 'number' ? len - 1 : right;
+
+    if (left < right) {
+        partitionIndex = partition(arr, left, right);
+        quickSort(arr, left, partitionIndex-1);
+        quickSort(arr, partitionIndex+1, right);
+    }
+    return arr;
+}
+
+function partition(arr, left ,right) {     // 分区操作
+    var pivot = left,                      // 设定基准值（pivot）
+        index = pivot + 1;
+    for (var i = index; i <= right; i++) {
+        if (arr[i] < arr[pivot]) {
+            swap(arr, i, index);
+            index++;
+        }        
+    }
+    swap(arr, pivot, index - 1);
+    return index-1;
+}
+
+function swap(arr, i, j) {
+    var temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
+
+console.log(quickSort(arrTest));
 
