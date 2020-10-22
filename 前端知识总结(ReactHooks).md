@@ -38,3 +38,12 @@ useState() 方法里面唯一的参数就是初始 state
 
 # useEffect()
 useEffect 就是一个 Effect Hook，给函数组件增加了操作副作用的能力, 如更新 DOM 等
+## useEffect() 需要哪些参数？ 
+`useEffect()` 参数：
+1. 第一个参数是一个函数 
+2. 第二个参数是一个数组，指定了第一个参数（副效应函数）的依赖项
+## useEffect() 的具体作用有哪些？
+1. 获取数据（data fetching）
+2. 事件监听或订阅（setting up a subscription）
+3. 改变 DOM（changing the DOM）
+4. 输出日志（logging）
