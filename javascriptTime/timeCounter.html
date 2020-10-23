@@ -9,14 +9,11 @@
 
         function CountDown() {
             
-                hours = Math.floor(maxtime / 3600)
+                hours   = Math.floor(maxtime / 3600);
                 minutes = Math.floor(maxtime / 60);
-                seconds = Math.floor(maxtime % 60);
+                seconds = Math.floor(maxtime % 60);                
 
-                
-
-                msg = `距离结束还有 ${hours} 小时 ${minutes} 分   ${seconds} 秒`
-                
+                msg = `距离结束还有 ${hours} 小时 ${minutes} 分   ${seconds} 秒`;                
                 
                 if (maxtime == 4 * 60) {
                     alert("还剩4分钟");
@@ -24,19 +21,15 @@
                 
                 --maxtime;
 
-                document.getElementById("timer").innerHTML = msg;
-            
+                document.getElementById("timer").innerHTML = msg;            
         }
 
-        setInterval("CountDown()", 1000);                
+        setInterval(CountDown, 1000);                
         
         </script>
     </head>
 
-    <body>
-        
-    <div id="timer" style="color:red"></div>
-   
-    
+    <body>        
+        <div id="timer" style="color:red"></div>    
     </body>
 </html>

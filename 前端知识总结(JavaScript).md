@@ -248,8 +248,14 @@ JavaScript `this` 关键词指的是它所属的对象。
 `通过 call()，我们能够在一个对象中使用属于另一个对象的方法`
 
 
-1. apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；
-2. apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；
+`call()`方法接受的是参数列表，而`apply()`方法接受的是一个参数数组
+
+
+apply 可以使用数组字面量（array literal），如 fun.apply(this, ['eat', 'bananas'])，或数组对象， 如  fun.apply(this, new Array('eat', 'bananas'))。
+
+
+1. apply 、 call 、bind 三者都是用来改变函数的`this`对象的指向的；
+2. apply 、 call 、bind 三者第一个参数都是`this`要指向的对象，也就是想指定的上下文；
 3. apply 、 call 、bind 三者都可以利用后续参数传参；
 4. bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调用 。
 
@@ -347,5 +353,18 @@ https://kiwenlau.com/2019/06/18/arrow-function-this/
 
 箭头函数this的定义：箭头函数中的this是在`定义`函数的时候绑定，而不是在`执行`函数的时候绑定
 
+# 严格模式
+ECMAScript 5的严格模式是采用具有限制性JavaScript变体的一种方式，从而使代码显示地 脱离“马虎模式/稀松模式/懒散模式“（sloppy）模式。
 
+
+严格模式不仅仅是一个子集：它的产生是为了形成与正常代码不同的语义。
+
+
+不支持严格模式与支持严格模式的浏览器在执行严格模式代码时会采用不同行为。
+
+
+1. 严格模式对正常的 JavaScript语义做了一些更改。
+2. 严格模式通过抛出错误来消除了一些原有静默错误。
+3. 严格模式修复了一些导致 JavaScript引擎难以执行优化的缺陷：有时候，相同的代码，严格模式可以比非严格模式下运行得更快。
+4. 严格模式禁用了在ECMAScript的未来版本中可能会定义的一些语法
 

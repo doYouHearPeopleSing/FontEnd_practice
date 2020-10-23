@@ -7,14 +7,15 @@
             #container {
                 display: flex;
                 flex-direction: row;
+                
                 justify-content: center;
                 align-items: center;
 
                 height: 800px;
             }
             div {
-                background-color: crimson;
-                color: palegoldenrod;
+                background-color:white;
+                color: red;
                 font-size: 50px;
             }
         </style>
@@ -54,6 +55,13 @@
             }
 
             setInterval(countTime,1000)
+            /*
+            setInterval() 方法可按照指定的周期（以毫秒计）来调用函数或计算表达式。
+
+            setInterval() 方法会不停地调用函数
+            直到 clearInterval() 被调用或窗口被关闭
+            由 setInterval() 返回的 ID 值可用作 clearInterval() 方法的参数
+            */
         </script>
     </body>
 </html>

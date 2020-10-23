@@ -97,7 +97,9 @@ function constructorType(target) {
 
 // 经过测试，稳定好用
 
-const typ = constructorType(Parent);
+const typ = constructorType([1,2,3]);
 console.log(typ)
 
 console.log(toStringType([1,2,3]));
+
+console.log(Array.isArray([1,2,3]));
