@@ -41,6 +41,19 @@ git rebase
 ``` 
 
 # 关于 Git stash 命令的使用
+```
+git stash
+```
+将改动暂时存储，之后可以拿出来
+
+```
+git stash pop
+```
+
+查看存储记录
+```
+git stash list
+```
 
 
 
