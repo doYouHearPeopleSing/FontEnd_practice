@@ -44,7 +44,7 @@ git rebase
 ```
 git stash
 ```
-将改动暂时存储，之后可以拿出来
+当前分支修改的内容放到缓存区中，并会自动建立一个缓存的list集合，方便管理
 
 ```
 git stash pop
@@ -53,6 +53,11 @@ git stash pop
 查看存储记录
 ```
 git stash list
+```
+
+从存储记录中恢复对应的修改
+```
+git stash apply @{x}
 ```
 
 
