@@ -16,21 +16,19 @@ function myNew(conFun, ...args){ // ...args为ES6展开符,也可以使用argume
     obj.__proto__ = conFun.prototype;
     
     //新对象和函数调用的this绑定起来
-    let result = conFun.call(obj,...args);
+    let result = conFun.call(obj , ...args);
 
     //判断函数返回值如果是 null 或者 undefined 则返回 obj,否则就返回 result
         
     // console.log(result instanceof Object);
     // 这句话的作用可以构造函数是否返回一个对象 
 
-
-
-    return result instanceof Object?result:obj;
+    return result instanceof Object ? result : obj;
 }
 
 const son = myNew(Father,'kimi');
 const A = myNew(Father,'fuuuuuuuuuck');
-son.sayname();
-A.sayname();
+const Dong = myNew(Father,'Dongshufeng');
+Dong.sayname();
 console.log(`------------`);
 console.log(son);
