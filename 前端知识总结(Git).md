@@ -57,8 +57,12 @@ git stash list
 
 从存储记录中恢复对应的修改
 ```
-git stash apply @{x}
+git stash apply stash@{\d}
 ```
 
+# Git stash pop 和 Git stash apply @stash{/\d/} 的区别在哪？
+
+`git stash apply` 会将当前分支的最后一次缓存的内容释放出来，但是刚才的记录还存在`stash list`中
 
 
+`git stash pop`也会将当前分支的最后一次缓存的内容释放出来，但是刚才的记录不存在`stash list`中
