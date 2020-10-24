@@ -1,3 +1,5 @@
+// `call()`方法接受的是参数列表
+
 Function.prototype.myCall = function(objOfMy) {
     objOfMy.func = this;
     const arg = [...arguments].splice(1);

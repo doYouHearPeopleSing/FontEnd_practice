@@ -1,3 +1,5 @@
+// `apply()`方法接受的是一个参数数组
+
 Function.prototype.myApply = function(objOfMy) {
     
     objOfMy.fn = this;
@@ -26,5 +28,5 @@ sayName.myApply(obj);
 console.log(`------------------`);
 sayName.apply(obj);
 console.log(`TEST ABOUT APLICE(1)[0]`);
-console.log([1,2,3,4,5,6,7,8,9,10].splice(1)[0])
+console.log([1, [100,101,102] ,3,4,5,6,7,8,9,10].splice(1)[0])
 // RESULT IS 2
