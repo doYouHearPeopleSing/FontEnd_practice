@@ -3,6 +3,9 @@ Function.prototype.myApply = function(objOfMy) {
     objOfMy.fn = this;
     const arg = [...arguments].splice(1)[0];
     // arg is an array for common 
+    // splice() 返回由被删除的元素组成的一个数组
+    // 如果只删除了一个元素，则返回只包含一个元素的数组
+    // 如果没有删除元素，则返回空数组。
    
     if(!Array.isArray(arg) && arg !== undefined) {
         throw new Error('must be an array');
