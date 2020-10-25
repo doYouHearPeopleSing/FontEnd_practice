@@ -2,7 +2,7 @@
 
 Function.prototype.myApply = function(objOfMy) {
     
-    objOfMy.fn = this;
+    objOfMy.func = this;
     const arg = [...arguments].splice(1)[0];
     // arg is an array for common 
     // splice() 返回由被删除的元素组成的一个数组
@@ -13,9 +13,9 @@ Function.prototype.myApply = function(objOfMy) {
         throw new Error('must be an array');
     }
 
-    objOfMy.fn(arg);
+    objOfMy.func(arg);
     
-    delete objOfMy.fn;
+    delete objOfMy.func;
 }
 
 const obj = { name : 'Dong' };

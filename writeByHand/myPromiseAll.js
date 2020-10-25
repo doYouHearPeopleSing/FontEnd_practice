@@ -8,6 +8,7 @@ function promiseAll(promises) {
       let resolvedCounter = 0;
       let promiseNum = promises.length;
       let resolvedValues = new Array(promiseNum);
+      
       for (let i = 0; i < promiseNum; i++) {
         (function(i) {
           Promise.resolve(promises[i]).then(function(value) {
