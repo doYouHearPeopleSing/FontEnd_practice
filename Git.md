@@ -66,3 +66,5 @@ git stash apply stash@{\d}
 
 
 `git stash pop`也会将当前分支的最后一次缓存的内容释放出来，但是刚才的记录不存在`stash list`中
+
+# Git pull 和 Git fetch 的区别是什么?
