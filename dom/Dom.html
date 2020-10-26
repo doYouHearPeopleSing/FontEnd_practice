@@ -8,16 +8,13 @@
 <body>
     <div id="container">
         <div>a</div>
-        <div>b</div>
-        <div>c</div>
-        <div>d</div>
-        <div>e</div>
+        <div>b</div>       
     </div>
+
     <div id = 'test1'>
-        <div>a</div>
-        <div>b</div>
-        <div>c</div>
-        <span>aaaa</span>
+        <div id = 'A'>A</div>
+        <div>B</div>
+        <div>C</div>
     </div>
 
     <div class = 'test2'>
@@ -27,47 +24,41 @@
         <p>test d</p>
     </div>
 
-    <div class = 'test3'>
+    <div class = 'test2'>
         <div>111</div>
         <div>222</div>
         <div>333</div>
     </div>
     <script>        
-        const resultArray = document.querySelector('.test3').children;
-        console.log(resultArray);
+        const getById = document.getElementById('test1');
+        console.log(getById);
 
-        const stack = [];
-        const newDomNode = [];
-        for( let index = 0; index < resultArray.length; index++) {
-            stack.push(resultArray[index]);
-        }
-        for( let index = 0; index < resultArray.length; index++) {
-            let result = stack.pop(resultArray[index]);
-            newDomNode[index] = result;
-            // console.log(result);
-        }
-        console.log(newDomNode);
+        const getByClassName = document.getElementsByClassName('test2');
+        console.log(getByClassName[1]);
+
+        let newDiv = document.createElement("div");
+        let newContent = document.createTextNode('Hi this is a new textContent');
+
+        newDiv.appendChild(newContent);
+
+        document.body.insertBefore(newDiv,document.getElementById('container'));
+
+
+        let pNode = document.createElement("p");
+        let newC = document.createTextNode('append child node');
+        pNode.appendChild(newC);
         
+        let testAppendNode = document.getElementsByClassName('test2')[0];
+        console.log(testAppendNode);
 
-        const childNodes = document.getElementsByClassName('test2')[0].childNodes;
-        const children = document.getElementsByClassName('test2')[0].children;
-        const childrenBySelect = document.querySelector('.test3').children;
-
-        const stackSelect = [];
-        for (let index = 0; index < childrenBySelect.length; index++) {
-            stack.push(childrenBySelect[index]);
-        }
-        for (let index = 0; index < childrenBySelect.length; index++) {
-            let resultByselect = stack.pop();
-            console.log(resultByselect);
-        }
-
-        console.log(childrenBySelect);
-        console.log(childNodes);
-        console.log(children);
+        testAppendNode.appendChild(pNode);
 
 
-        const b = document.getElementById("test1").childNodes;
+        
+        let eleRemove = document.getElementById('test1');
+        let eleTobeRem = document.getElementById('A');
+
+        eleRemove.removeChild(eleTobeRem);    
 
     </script>
 </body>

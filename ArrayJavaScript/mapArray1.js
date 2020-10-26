@@ -3,6 +3,8 @@
 // 我们关于map 的用法知之甚少！
 const array = ['1','2','3'].map(parseInt);
 // [1,NaN,NaN]
+
+
 console.log(array);
 
 
