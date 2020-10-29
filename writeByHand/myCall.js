@@ -6,7 +6,7 @@ Function.prototype.myCall = function(objOfMy) {
     
     objOfMy.func = this;
     
-    const arg = [...arguments].splice(1);
+    const arg = [...arguments].splice(1);       
 
     objOfMy.func(...arg); 
 
