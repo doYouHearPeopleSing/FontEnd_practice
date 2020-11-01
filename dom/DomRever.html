@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = '1'>
+        <div>1</div>
+        <div>2
+            <p>2.1</p>
+            <p>2.2</p>
+        </div>
+        <div>3</div>
+        <p>4</p>
+    </div>
+    <script>
+        let fatherDom = document.getElementById('1');        
+        
+        function reDom (fatherDom) {
+            let reDomChildren = document.getElementById('1').children;
+            fatherDom.append(...[...reDomChildren].reverse());
+        }
+
+        reDom(fatherDom);
+    </script>
+</body>
+</html>

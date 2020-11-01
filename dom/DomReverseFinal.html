@@ -25,14 +25,10 @@
     <script>
         
         // 这个函数将递归地将这个dom节点及其子节点反转
-        function resver(resverDom) {
-            
-            const children = resverDom.children;
-            console.log(children);
-            console.log(children.constructor.name);
-            
+        function resver(resverDom) {            
+            const children = resverDom.children;            
             const stack = [];
-
+            
             for(let i = 0;i<children.length;i++){
                 let tempNode = children[i]
                 if(tempNode.children.length !== 0) {
