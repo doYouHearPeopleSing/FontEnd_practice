@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * { margin: 0;padding: 0 }
+ 
+        .container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .left {
+            float: left;
+            width: 200px;
+            height: 100%;
+            background-color:red;
+        }
+        
+        .right {
+            float: none;
+            width: 100%;
+            height: 100%;
+            background-color:yellow;
+        }
+
+        .A {
+            float: left;
+            height: 100%;
+            width: 30%;
+            background-color: blue;
+        }
+
+        .B {
+            float: right;
+            height: 100%;
+            width: 30%;
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">固定宽度</div>
+        <div class="right">
+            <div class="A">A</div>
+            <div class="B">B</div>
+        </div>
+    </div>
+</body>
+</html>

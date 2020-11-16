@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 先来看看 ES6 标准中对 let/const 声明中的解释 第13章，有如下一段文字：
+
+The variables are created when their containing Lexical Environment is instantiated but may not be accessed inany way until the variable’s LexicalBinding is evaluated.
+当然这段话我看完也很懵，查阅了一些帖子，翻译成人话就是：
+
+当程序的控制流程在新的作用域（module function 或 block 作用域）进行实例化时，在此作用域中用let/const声明的变量会先在作用域中被创建出来，但因此时还未进行词法绑定，所以是不能被访问的，如果访问就会抛出错误。因此，在这运行流程进入作用域创建变量，到变量可以被访问之间的这一段时间，就称之为暂时死区。
+如果你还是记不住，那么只需理解下面这句话即可：
+
+ES6规定，let/const 命令会使区块形成封闭的作用域。若在声明之前使用变量，就会报错。
+总之，在代码块内，使用 let 命令声明变量之前，该变量都是不可用的。
+这在语法上，称为 “暂时性死区”（ temporal dead zone，简称 TDZ）。
+ -->
+<body>
+    <script>
+
+        console.log(a);
+        var a = 3;
+        
+        console.log('1=>', test);
+
+        var test;
+
+        function test(obj) {
+            // console.log('2=>', obj2) // (如果注释这行，打印结果分别是？)
+            
+            obj.name = 'xiaomi';
+            
+            let obj2 = obj
+            
+            obj2 = {
+                name: 'xiaomi'
+            }
+
+            console.log('3=>', obj == obj2);
+        }
+
+        var o = {name: 'mi'};
+        
+        test(o);
+
+        console.log('4=>', o.name);
+
+
+        const arr = [1,2,3,4,4,4,4];
+        const set = new Set(arr);
+        const result = [...set];
+
+        console.log(set);
+        console.log([...set]);
+        console.log(result);
+        console.log(result instanceof Array);
+
+        
+
+
+    </script>
+</body>
+</html>

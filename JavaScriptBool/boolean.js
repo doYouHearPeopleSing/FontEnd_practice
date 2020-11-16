@@ -19,6 +19,8 @@ if({} === {}) {
     console.log('{} === {} is true');
 }
 
+console.log([]===[]);
+console.log([]==[]);
 console.log([5] * [2]);
 console.log(`--------`);
 console.log('11' - 1);// 10
