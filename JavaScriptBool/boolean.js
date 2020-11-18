@@ -1,8 +1,12 @@
 
-
+/** TRUE */
 if([]) {
     console.log('[] is true');
 }
+
+/**  
+ * All false  
+ */
 
 if([].length) {
     console.log('[].length is true');
