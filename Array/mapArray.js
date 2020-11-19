@@ -1,3 +1,19 @@
+/*
+ * @Author: your name
+ * @Date: 2020-08-06 20:25:13
+ * @LastEditTime: 2020-11-19 18:55:48
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \myGitHub\Array\mapArray1.js
+ */
+
+/**
+ * @description: 
+ * The map() method creates a new array populated with the results of 
+ * calling a provided function on every element in the calling array.
+ * @param {*}
+ * @return {*}
+ */
 
 
 // 我们关于map 的用法知之甚少！
