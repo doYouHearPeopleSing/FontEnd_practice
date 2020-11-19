@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-11-19 16:20:20
+ * @LastEditTime: 2020-11-19 16:20:40
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \myGitHub\String\clearSpaceStr.js
+ */
 str = '    This is a       string   ';
 const strNew = str.split(' ').filter(element =>(element !== '')).join(' ');
 
