@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-29 15:55:23
- * @LastEditTime: 2020-11-19 17:27:57
+ * @LastEditTime: 2020-11-22 20:17:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\ArrayJavaScript\arrayToString.js
@@ -38,10 +38,10 @@ function myToStringC(array) {
     return strResult;
 }
 
-// const str = myToStringC(   [1,[ 2,[3 ,[4,[5]]] ], 6]  );
+const str = myToStringC(   [1,[ 2,[3 ,[4,[5,[6]]]] ], 7,[8]]  );
 
-// console.log(str);
-// console.log(typeof str);
+console.log(str);
+console.log(typeof str);
 
 
 
@@ -68,8 +68,6 @@ function myToStringC(array) {
      return resultArr;
  }
 
-const array = myToArrayA('1,2,3,4,5,6',',');
 
-console.log(array);
 
 
