@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-08-06 20:25:13
- * @LastEditTime: 2020-11-20 11:30:18
+ * @LastEditTime: 2020-11-20 13:02:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\JavaScript\deepCopy.js
@@ -56,7 +56,7 @@ function deepCloneC(target) {
    }
 }
 
-const objCopy = deepCloneA(objOrign)
+const objCopy = deepCloneC(objOrign)
 
 /**
  * @description: 
@@ -69,6 +69,22 @@ objCopy.field4.array.push(4)
 objCopy.field4.array.push(5)
 
 show(objOrign,objCopy)
+
+console.log(typeof objCopy)
+
+/**
+ * @description: 
+ * COPY AN ARRAY
+ */
+const arrOr = [1,2,3,4,{ id:5}]
+const arrCo = deepCloneC(arrOr)
+
+arrOr.push(6)
+arrCo[4].id = 'fuckYou'
+show(arrOr,arrCo)
+
+
+console.log(typeof arrCo)
 
 
 

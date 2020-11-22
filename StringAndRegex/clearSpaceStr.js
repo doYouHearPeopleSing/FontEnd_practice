@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-19 16:20:20
- * @LastEditTime: 2020-11-22 17:12:21
+ * @LastEditTime: 2020-11-22 17:19:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\String\clearSpaceStr.js
@@ -44,12 +44,9 @@ function myClearAllSpaceB(string) {
         例如，/a+/ 会匹配 "candy" 中的 'a' 和 "caaaaaaandy" 中所有的 'a'，但是在 "cndy" 中不会匹配任何内容
 
     	
-    x|y 匹配‘x’或者‘y’。
+    x|y 匹配‘x’或者‘y’
 
         例如，/green|red/匹配“green apple”中的‘green’和“red apple”中的‘red’
-
-    
-        
   * 
   */ 
 
