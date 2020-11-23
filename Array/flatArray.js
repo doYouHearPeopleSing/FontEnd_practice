@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-22 20:17:33
- * @LastEditTime: 2020-11-22 21:19:55
+ * @LastEditTime: 2020-11-23 17:11:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\Array\flatArray.js
@@ -80,19 +80,28 @@
 }
 
 function myFlatE(array, depth = 1) {
-    return array.reduce((result, item) => {
+    return array.reduce(
+
+    (result, item) => {
       if (Array.isArray(item) && depth > 0) {
         result.push(...myFlatE(item, depth - 1))
       } else {
         result.push(item)
       }
       return result
-    }, [])
+    }, 
+    
+    []
+    )
 }
+
+
+
+
 
 const arrayTest = [1000,[ 'FUCK',[['shit'] ,[4,[5,[6]]]] ], 7,[8]]
 
-console.log(myFlatE(arrayTest,2))
+console.log(myFlatC(arrayTest,3))
 
-console.log(myFlatC(arrayTest,2))
+console.log(myFlatE(arrayTest,3))
  
