@@ -10,11 +10,7 @@ function defaultCompare (a,b) {
     return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN
 }
 
-/*
-function swap (array,a,b) {
-     [array[a],array[b]] = [array[b],array[a]];
-}
-*/
+
 // bubbleSort
 
 function bubbleSort (array,compareFn = defaultCompare) {

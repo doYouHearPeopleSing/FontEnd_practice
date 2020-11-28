@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-22 17:35:32
- * @LastEditTime: 2020-11-23 19:16:05
+ * @LastEditTime: 2020-11-23 19:20:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\Sort\sortGithub.js
@@ -121,7 +121,7 @@ var Sort = {
             for (var i = 0; i < step; ++i) {
                 for (var j = i + step; j < nLength; j += step) {
                     var k = j,
-                        value = arr[j];
+                        value = arr[j]
                     while (k >= step && arr[k - step] > value) {
                         arr[k] = arr[k - step]
                         k -= step
