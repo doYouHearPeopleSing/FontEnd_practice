@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-19 19:01:48
- * @LastEditTime: 2020-11-20 10:19:40
+ * @LastEditTime: 2020-11-28 13:45:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\Array\reduceArray.js
@@ -24,6 +24,31 @@
  })
 
  console.log(sumOfArray)
+
+/**
+ * @description: 
+ * Using reduce() to flat an Array
+ */ 
+
+function myFlatByReduce(array, depth = 1) {
+   return array.reduce(
+
+   (result, item) => {
+     if (Array.isArray(item) && depth > 0) {
+       result.push(...myFlatByReduce(item, depth - 1))
+     } else {
+       result.push(item)
+     }
+     return result
+   }, 
+   
+   []
+   // InitialValue
+   )
+}
+
+
+
 
 
 
