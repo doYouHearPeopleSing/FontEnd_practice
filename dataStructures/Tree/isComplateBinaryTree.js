@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-07 17:53:52
- * @LastEditTime: 2020-11-28 12:19:47
+ * @LastEditTime: 2020-11-28 12:22:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\dataStructures\Tree\isComplateBinaryTree.js
@@ -19,14 +19,11 @@ const tree = {
     },
     right:{
         data:3, 
-        // left: {
-        //     data:6
-        // },
+        left: {
+            data:6
+        },
         right: {
-            data:7,
-            // left:{
-            //     data:100
-            // }
+            data:7        
         }
     }
 }
