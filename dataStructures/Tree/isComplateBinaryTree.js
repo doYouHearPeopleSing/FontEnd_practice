@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-07 17:53:52
- * @LastEditTime: 2020-11-28 12:22:37
+ * @LastEditTime: 2020-11-28 12:23:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\dataStructures\Tree\isComplateBinaryTree.js
@@ -74,4 +74,4 @@ function isCompleteBinaryTree(node) {
 }
 
 isCompleteBinaryTree(tree)
-// console.log(output);
+// console.log(output)

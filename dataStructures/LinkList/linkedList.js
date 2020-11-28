@@ -99,13 +99,13 @@ class linkedList {
     }
 }
 
-const List = new linkedList;
-List.push(2018);
-List.push(2020);
-List.push(2021);
+const List = new linkedList
+List.push(2018)
+List.push(2020)
+List.push(2021)
 // List.insert(2017,0);
 // List.insert(2019,2);
 
-const result = List.toString();
-console.log(result);
+const result = List.toString()
+console.log(result)
 
