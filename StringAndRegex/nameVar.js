@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-21 13:43:57
- * @LastEditTime: 2020-11-22 11:00:38
+ * @LastEditTime: 2020-12-03 15:57:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\String\nameVar.js
@@ -76,10 +76,9 @@ function toLineB(name) {
     )
 }
 
-function allTurn(name) {
-    const arrName = name.split('')
+function allTurn(name) {    
 
-    if(arrName.includes(`_`)) {
+    if(name.includes(`_`)) {
         return name.replace(
             /_(\w)/g,
 

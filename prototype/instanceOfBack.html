@@ -1,0 +1,78 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-29 19:55:32
+ * @LastEditTime: 2020-11-29 21:10:01
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+
+
+ https://stackoverflow.com/questions/203739/why-does-instanceof-return-false-for-some-literals
+ * @FilePath: \myGitHub\prototype\instanceOfBack.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function myInstacnceOf(target,orign) {
+            while(target) {
+                if(target.__proto__ === orign.prototype) {
+                    return true
+                }
+                target = target.__proto__
+            }
+            return false
+        }
+
+        function instancePrint(target) {
+            if(target.__proto__ !== null) {
+                
+                let temp = target.__proto__;
+                
+                console.log(temp.constructor.name)
+
+                instancePrint(temp)
+
+            }else if(target.__proto__ === null){
+
+                console.log(`This is null`)      
+                          
+            }
+        }       
+
+        const strA = new String('this is a string')
+
+        const strB = 'this is also a string'
+
+        const resultA = strA instanceof String
+
+        const resultB = strB instanceof String
+
+        console.log(resultA)
+
+        console.log(resultB)
+
+        console.log(`----------------------`)
+
+        console.log(strA.__proto__)
+
+        console.log(strB.__proto__)
+
+        console.log(strA.__proto__ === strB.__proto__)
+
+        console.log(`------`)
+
+        console.log(myInstacnceOf(strB,String))
+
+       
+
+
+
+    </script>
+</body>
+</html>
+ 

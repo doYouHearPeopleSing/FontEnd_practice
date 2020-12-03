@@ -28,40 +28,42 @@
         console.log(childD.age); 
 
         console.log(childD.constructor.name);
+
        // 原型链继承无法传递参数
 
        // 原型链继承的缺点 引用类型的属性被所有实例共享
 
-       // 多个实例对引用类型的操作会被篡改。
+       // 多个实例对引用类型的操作会被篡改
+
        function Parent () {
-            this.names = ['kevin', 'daisy'];
+            this.names = ['kevin', 'daisy']
         }
 
         function Child () {
 
         }
 
-        Child.prototype = new Parent();
+        Child.prototype = new Parent()
 
-        var child1 = new Child();
+        var child1 = new Child()
 
-        child1.names.push('yayu');
+        child1.names.push('yayu')
 
-        console.log(child1.names); // ["kevin", "daisy", "yayu"]
+        console.log(child1.names) // ["kevin", "daisy", "yayu"]
 
-        var child2 = new Child();
+        var child2 = new Child()
 
-        console.log(child2.names); // ["kevin", "daisy", "yayu"]
+        console.log(child2.names)// ["kevin", "daisy", "yayu"]
 
 
 
         // 2.构造函数继承: 借用构造函数 可以避免引用类型的属性被所有实例共享，可以在子类中向父类传递参数
 
         function Car (names) {
-            this.names = names;
+            this.names = names
         }
         function Benz (names) {
-            Car.call(this,names);
+            Car.call(this,names)
             // 核心代码是SuperType.call(this)
             // 创建子类实例时调用SuperType构造函数
             // 于是SubType的每个实例都会将SuperType中的属性复制一份
