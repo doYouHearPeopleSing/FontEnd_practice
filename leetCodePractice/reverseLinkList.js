@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-05 10:42:26
- * @LastEditTime: 2020-12-04 18:12:50
+ * @LastEditTime: 2020-12-04 18:28:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\leetCodePractice\reverseLinkList.js
@@ -19,8 +19,8 @@
  */
 
 function ListNode(val) {
-         this.val = val
-         this.next = null
+    this.val = val
+    this.next = null
 }
 
 function reverseListA (head) {
