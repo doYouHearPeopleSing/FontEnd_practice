@@ -1,12 +1,12 @@
 /*
  * @Author: your name
  * @Date: 2020-11-08 13:44:51
- * @LastEditTime: 2020-12-04 12:45:35
+ * @LastEditTime: 2020-12-04 17:09:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\leetCodePractice\removeDuplicatesArray.js
  */
-const arr = [1,2,3,3,3,4,5,6,6,6,'1']
+const arr = [1,2,3,3,3,4,4,4,4,5,6,6,6,7,7,7,8]
 
 // ES6 
 function removeD1(array) {
@@ -48,8 +48,30 @@ function removeD4(array) {
     return result
 }
 
-const result = removeD1(arr)
+function removeD5(array) {
+    
+    // const result = [...array]
 
-console.log(result,result instanceof Array)
+    const result = array.concat()
+    
+    result.sort( (a,b)=> a - b )
 
-console.log(result.length)
+    let i = 0
+
+    for(let j = 1; j < result.length; j++){
+
+        if(result[i] != result[j]){
+            i++
+            result[i] = result[j]
+        }
+    }
+    
+    return result.splice(0 , i+1);
+};
+
+const result = removeD5(arr)
+
+
+console.log(result)
+console.log(`----------`)
+console.log(arr)
