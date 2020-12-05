@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-05 10:42:26
- * @LastEditTime: 2020-12-04 18:28:23
+ * @LastEditTime: 2020-12-05 12:53:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\leetCodePractice\reverseLinkList.js
@@ -28,10 +28,10 @@ function reverseListA (head) {
     let pre = null
     let next = null
     while (cur != null) {
-      next = cur.next;
-      cur.next = pre;
-      pre = cur;
-      cur = next;
+      next = cur.next
+      cur.next = pre
+      pre = cur
+      cur = next
     }
     return pre
 }
@@ -45,7 +45,8 @@ function reverseListB(head) {
       temp = temp.next
     }
     
-    temp = head, i = 0
+    temp = head
+    let i = 0
     
     stash.reverse()
 
@@ -63,8 +64,8 @@ const node3 = new ListNode(3)
 const node4 = new ListNode(4)
 
 node1.next = node2
-node2.next = node3
-node3.next = node4
+// node2.next = node3
+// node3.next = node4
 
 
 
