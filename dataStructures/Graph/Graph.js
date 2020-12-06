@@ -1,88 +1,148 @@
 /*
  * @Author: your name
  * @Date: 2020-11-28 16:25:43
- * @LastEditTime: 2020-11-28 16:29:13
+ * @LastEditTime: 2020-12-06 11:20:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\dataStructures\Graph\Graph.js
  */
 
+function defaultToString(item) {
+  if( item === null ) {
+      return 'NULL';
+  }else if(item === undefined) {
+      return 'UNDEFINED';
+  }else if(typeof item === 'string' || item instanceof String) {
+      return `${item}`;
+  }
+  return item.toString();
+}
+class ValuePair {
+  constructor(key,value) {
+      this.key = key;
+      this.value = value;
+  }
+  toString() {
+      return `[${this.key}:${this.value}]`;
+  }
+}
+ class Dictionary {
+  constructor(toStrFn = defaultToString) {
+    this.toStrFn = toStrFn;
+    this.table = {};
+  }
+  set(key, value) {
+    if (key != null && value != null) {
+      const tableKey = this.toStrFn(key);
+      this.table[tableKey] = new ValuePair(key, value);
+      return true;
+    }
+    return false;
+  }
+  get(key) {
+    const valuePair = this.table[this.toStrFn(key)];
+    return valuePair == null ? undefined : valuePair.value;
+  }
+  hasKey(key) {
+    return this.table[this.toStrFn(key)] != null;
+  }
+  remove(key) {
+    if (this.hasKey(key)) {
+      delete this.table[this.toStrFn(key)];
+      return true;
+    }
+    return false;
+  }
+  values() {
+    return this.keyValues().map(valuePair => valuePair.value);
+  }
+  keys() {
+    return this.keyValues().map(valuePair => valuePair.key);
+  }
+  keyValues() {
+    return Object.values(this.table);
+  }
+  forEach(callbackFn) {
+    const valuePairs = this.keyValues();
+    for (let i = 0; i < valuePairs.length; i++) {
+      const result = callbackFn(valuePairs[i].key, valuePairs[i].value);
+      if (result === false) {
+        break;
+      }
+    }
+  }
+  isEmpty() {
+    return this.size() === 0;
+  }
+  size() {
+    return Object.keys(this.table).length;
+  }
+  clear() {
+    this.table = {};
+  }
+  toString() {
+    if (this.isEmpty()) {
+      return '';
+    }
+    const valuePairs = this.keyValues();
+    let objString = `${valuePairs[0].toString()}`;
+    for (let i = 1; i < valuePairs.length; i++) {
+      objString = `${objString},${valuePairs[i].toString()}`;
+    }
+    return objString;
+  }
+}
+ class Graph {
+  constructor(isDirected = false) {
+    this.isDirected = isDirected
+    this.vertices = []
+    this.adjList = new Dictionary()
+  }
+  addVertex(v) {
+    if (!this.vertices.includes(v)) {
+      this.vertices.push(v);
+      this.adjList.set(v, []); // initialize adjacency list with array as well;
+    }
+  }
+  addEdge(a, b) {
+    if (!this.adjList.get(a)) {
+      this.addVertex(a);
+    }
+    if (!this.adjList.get(b)) {
+      this.addVertex(b);
+    }
+    this.adjList.get(a).push(b);
+    if (this.isDirected !== true) {
+      this.adjList.get(b).push(a);
+    }
+  }
+  getVertices() {
+    return this.vertices;
+  }
+  getAdjList() {
+    return this.adjList;
+  }
+  toString() {
+    let s = '';
+    for (let i = 0; i < this.vertices.length; i++) {
+      s += `${this.vertices[i]} -> `;
+      const neighbors = this.adjList.get(this.vertices[i]);
+      for (let j = 0; j < neighbors.length; j++) {
+        s += `${neighbors[j]} `;
+      }
+      s += '\n';
+    }
+    return s;
+  }
+}
 
-class Graph {
-    constructor () {
-      this.adjacencyMap = {}
-    }
-  
-    addVertex (v) {
-      this.adjacencyMap[v] = []
-    }
-  
-    containsVertex (vertex) {
-      return typeof (this.adjacencyMap[vertex]) !== 'undefined'
-    }
-  
-    addEdge (v, w) {
-      let result = false
-      if (this.containsVertex(v) && this.containsVertex(w)) {
-        this.adjacencyMap[v].push(w)
-        this.adjacencyMap[w].push(v)
-        result = true
-      }
-      return result
-    }
-  
-    printGraph () {
-      const keys = Object.keys(this.adjacencyMap)
-      for (const i of keys) {
-        const values = this.adjacencyMap[i]
-        let vertex = ''
-        for (const j of values) { vertex += j + ' ' }
-        console.log(i + ' -> ' + vertex)
-      }
-    }
-  
-    /**
-     * Prints the Breadth first traversal of the graph from source.
-     *
-     * @param {number} source The source vertex to start BFS.
-     */
-    bfs (source) {
-      const queue = []
-      const visited = new Set()
-      queue.unshift([source, 0]) // level of source is 0
-      visited.add(source)
-      while (queue.length) {
-        const front = queue[0]
-        const node = front[0]
-        const level = front[1]
-        queue.shift() // remove the front of the queue
-        console.log(`Visited node ${node} at level ${level}.`)
-        for (const next of this.adjacencyMap[node]) {
-          if (!visited.has(next)) { // not visited
-            queue.unshift([next, level + 1]) // level 1 more than current
-            visited.add(next)
-          }
-        }
-      }
-    }
-  }
-  
-  const example = () => {
-    const graph = new Graph()
-    graph.addVertex(1)
-    graph.addVertex(2)
-    graph.addVertex(3)
-    graph.addVertex(4)
-    graph.addVertex(5)
-    graph.addEdge(1, 2)
-    graph.addEdge(1, 3)
-    graph.addEdge(2, 4)
-    graph.addEdge(2, 5)
-    console.log('Printing the adjacency list:\n')
-    graph.printGraph()
-  
-    // perform a breadth first search
-    console.log('\nBreadth first search at node 1:\n')
-    graph.bfs(1)
-  }
-  example()
+const myGraph = new Graph()
+
+myGraph.addVertex(1)
+myGraph.addVertex(2)
+myGraph.addVertex(3)
+myGraph.addVertex(4)
+
+const graphString = myGraph.toString()
+console.log(graphString)
+
