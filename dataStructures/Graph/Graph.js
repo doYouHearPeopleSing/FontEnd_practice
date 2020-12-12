@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-28 16:25:43
- * @LastEditTime: 2020-12-07 16:46:58
+ * @LastEditTime: 2020-12-07 16:49:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\dataStructures\Graph\Graph.js
@@ -132,7 +132,7 @@ class ValuePair {
       for (let j = 0; j < neighbors.length; j++) {
         s += `${neighbors[j]} `;
       }
-      
+
       s += '\n';
     }
     return s;
@@ -148,6 +148,11 @@ myGraph.addVertex(4)
 myGraph.addEdge(1,2)
 myGraph.addEdge(2,3)
 
-const graphString = myGraph.toString()
-console.log(graphString)
+const adjList = myGraph.getAdjList()
+
+const vertices = myGraph.getVertices()
+
+console.log(adjList)
+
+console.log(vertices)
 
