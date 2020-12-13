@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-13 16:27:14
- * @LastEditTime: 2020-12-13 18:20:09
+ * @LastEditTime: 2020-12-13 21:13:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \myGitHub\Argio\DP.js
@@ -53,4 +53,31 @@
     
     return dpArray[n]
  }
- console.log(climbStairs(8))
+ 
+ function uniquePaths(m,n) {
+     
+    const dpArray = new Array(m)
+    .fill(0)
+    .map(
+        () => new Array(n).fill(0)
+    )
+
+    for (let i = 0; i < m; i++) {
+        dpArray[i][0] = 1
+    }
+
+    for (let j = 0; j < n; j++) {
+        dpArray[0][j] = 1
+    }
+
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            dpArray[i][j] = dpArray[i - 1][j] + dpArray[i][j - 1]
+        }
+    }
+    
+    return dpArray[m - 1][n - 1];
+
+ }
+
+ console.log(uniquePaths(7,3))
